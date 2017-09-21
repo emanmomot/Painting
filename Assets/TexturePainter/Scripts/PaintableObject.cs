@@ -14,6 +14,8 @@ public class PaintableObject : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		gameObject.layer = LayerMask.NameToLayer (TexturePainter.c_paintableLayer);
+
 		m_canvas = new RenderTexture (canvasWidth, canvasHeight, 24);
 		m_brushContainer = GameObject.Instantiate (TexturePainter.singleton.brushContainerPrefab, 
 			TexturePainter.singleton.brushContainerParent, false).transform;

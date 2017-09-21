@@ -13,7 +13,10 @@ public enum Painter_BrushMode { PAINT, DECAL };
 
 public class TexturePainter : MonoBehaviour {
 
+	public const string c_paintableLayer = "Paintable";
+
 	public static TexturePainter singleton;
+	public static LayerMask paintableLayerMask;
 
 	public Transform brushContainerParent;
 	public GameObject brushContainerPrefab;
@@ -34,6 +37,7 @@ public class TexturePainter : MonoBehaviour {
 
 	void Awake () {
 		singleton = this;
+		paintableLayerMask = 1 << LayerMask.NameToLayer (c_paintableLayer);
 	}
 
 	void Start () {
@@ -123,7 +127,7 @@ public class TexturePainter : MonoBehaviour {
 		RaycastHit hit;
 		Vector3 cursorPos = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, 0.0f);
 		Ray cursorRay = sceneCamera.ScreenPointToRay (cursorPos);
-		if (Physics.Raycast (cursorRay, out hit, 200)) {
+		if (Physics.Raycast (cursorRay, out hit, 200, paintableLayerMask)) {
 			
 			paintableObject = hit.collider.GetComponent<PaintableObject> ();
 			if (paintableObject == null) {
