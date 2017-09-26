@@ -57,9 +57,8 @@ public class MouseLook : MonoBehaviour
  
 			if (!ColorSelector.singleton.isOpen) {
 				rotationX += Input.GetAxis ("Mouse X") * sensitivityX * Time.timeScale;
- 
-				rotArrayX.Add (rotationX);
 			}
+			rotArrayX.Add (rotationX);
  
 			if (rotArrayX.Count >= framesOfSmoothing)
 			{
@@ -69,6 +68,7 @@ public class MouseLook : MonoBehaviour
 			{
 				rotAverageX += rotArrayX[i];
 			}
+
 			rotAverageX /= rotArrayX.Count;
 			rotAverageX = ClampAngle(rotAverageX, minimumX, maximumX);
  
@@ -90,8 +90,8 @@ public class MouseLook : MonoBehaviour
 			
 				rotationY = Mathf.Clamp (rotationY, minimumY, maximumY);
  	
-				rotArrayY.Add (rotationY);
 			}
+			rotArrayY.Add (rotationY);
  
 			if (rotArrayY.Count >= framesOfSmoothing)
 			{
@@ -101,6 +101,7 @@ public class MouseLook : MonoBehaviour
 			{
 				rotAverageY += rotArrayY[j];
 			}
+
 			rotAverageY /= rotArrayY.Count;
  
 			Quaternion yQuaternion = Quaternion.AngleAxis (rotAverageY, Vector3.left);

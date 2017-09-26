@@ -60,6 +60,7 @@ public class SmoothBrush {
 
 			cps.RemoveAt (0);
 			ms.RemoveAt (0);
+			sizes.RemoveAt (0);
 
 			dots.Clear ();
 		} else {

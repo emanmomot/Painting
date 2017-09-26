@@ -333,4 +333,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   brushChangeRate: 0.1
   minBrushSize: 0.3
-  maxBrushSize: 4
+  maxBrushSize: 10

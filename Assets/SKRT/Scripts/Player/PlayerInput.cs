@@ -16,6 +16,7 @@ public class PlayerInput : MonoBehaviour {
 	private float brushSize;
 
 	private bool isJoystick;
+	private bool joystickInit;
 
 	void Awake() {
 		singleton = this;
@@ -34,16 +35,25 @@ public class PlayerInput : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		
 		float paintAxis = Input.GetAxis ("Paint");
+
 		if (isJoystick) {
+			// on mac joystick axis is init to 0 instead of -1
+			if (!joystickInit) {
+				if (paintAxis == 0) {
+					paintAxis = -1;
+				} else {
+					joystickInit = true;
+				}
+			}
+
 			paintAxis = (paintAxis + 1) / 2.0f;
 		}
 
 		isTriggerHeld = paintAxis > 0;
 		if (isTriggerHeld) {
 			TexturePainter.singleton.SetBrushSize (brushSize * paintAxis);
-		} else {
-			TexturePainter.singleton.SetBrushSize (brushSize);
 		}
 
 		if (Input.GetButton ("IncBrushSize") && brushSize < maxBrushSize) {
@@ -53,6 +63,15 @@ public class PlayerInput : MonoBehaviour {
 		}
 
 		TexturePainter.singleton.UpdateTP ();
+
+		if (Input.GetButtonDown ("EyeDrop") && TexturePainter.singleton.IsOnPaintableObject()) {
+			TexturePainter.singleton.EyeDrop ();
+		}
+
+		// return to regular cursor size after finalizing the stroke
+		if (!isTriggerHeld) {
+			TexturePainter.singleton.SetBrushSize (brushSize);
+		}
 
 
 

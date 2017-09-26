@@ -34,6 +34,7 @@ public class ColorSelector : MonoBehaviour {
 		SelectInnerColor (Vector2.zero);
 		finalColorSprite.color=finalColor;
 		transform = colorSelector.transform;
+		isOpen = true;
 
 	}
 
@@ -51,6 +52,7 @@ public class ColorSelector : MonoBehaviour {
 			}
 
 			Vector2 innerselection = .05f * new Vector2 (Input.GetAxis ("Horizontal"), Input.GetAxis ("Vertical"));
+
 			innerDelta += innerselection;
 			SelectInnerColor (innerDelta);
 
@@ -58,6 +60,14 @@ public class ColorSelector : MonoBehaviour {
 			colorSelector.SetActive (false);
 			isOpen = false;
 		}
+	}
+
+	public static void SetColor(Color color) {
+		singleton.SetColorMe (color);
+	}
+
+	private void SetColorMe(Color color) {
+		finalColor = color;
 	}
 
 	void UserInputUpdate(){

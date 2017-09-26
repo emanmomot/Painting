@@ -42,7 +42,7 @@ public class TexturePainter : MonoBehaviour {
 
 	const float BRUSH_STEP = .01f;
 	const float CP_TIME = .15f;
-	const float PAINT_RANGE = 15F;
+	const float PAINT_RANGE = 30F;
 
 	private float cpTimer;
 
@@ -100,6 +100,26 @@ public class TexturePainter : MonoBehaviour {
 
 		RenderCanvas (lastPaintableObject, false);
 		SaveTexture (lastPaintableObject);
+	}
+
+	public void EyeDrop() {
+		// disable cursor
+		RenderCanvas (lastPaintableObject, false);
+
+		RenderTexture canvas = lastPaintableObject.GetCanvas ();
+		Texture2D eyeDropTex = new Texture2D (1, 1);
+
+		Vector2 pixelPos = new Vector2 ();
+		pixelPos.x = (brushPos.x + canvasCam.orthographicSize) * canvas.width;
+		pixelPos.y = (brushPos.y + canvasCam.orthographicSize) * canvas.height;
+
+		Rect pixelRect = new Rect (pixelPos, Vector2.one);
+
+		RenderTexture.active = canvas;
+		eyeDropTex.ReadPixels (pixelRect, 0, 0);
+		RenderTexture.active = null;
+
+		ColorSelector.SetColor (eyeDropTex.GetPixel (0, 0));
 	}
 
 	public GameObject MakeDot(PaintableObject paintableObject, Vector2 pos, float size) {

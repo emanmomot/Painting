@@ -2308,7 +2308,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 07f7db2153c6d48a79fed10f2fa5989e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5151,14 +5151,20 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114203971631705394, guid: 25e3ab2d6992a48f3ab7455baed062e0,
-        type: 2}
-      propertyPath: maxBrushSize
+    - target: {fileID: 11400014, guid: 25e3ab2d6992a48f3ab7455baed062e0, type: 2}
+      propertyPath: walkSpeed
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 114203971631705394, guid: 25e3ab2d6992a48f3ab7455baed062e0,
-        type: 2}
-      propertyPath: m_Enabled
+    - target: {fileID: 11400014, guid: 25e3ab2d6992a48f3ab7455baed062e0, type: 2}
+      propertyPath: runSpeed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: 25e3ab2d6992a48f3ab7455baed062e0, type: 2}
+      propertyPath: jumpSpeed
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: 25e3ab2d6992a48f3ab7455baed062e0, type: 2}
+      propertyPath: enableRunning
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
