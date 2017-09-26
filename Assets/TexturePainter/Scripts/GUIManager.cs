@@ -20,7 +20,7 @@ public class GUIManager : MonoBehaviour {
 		painter.SetBrushMode (brushMode);
 	}
 	public void UpdateSizeSlider(){
-		painter.SetBrushSize (sizeSlider.value);
+		//painter.SetBrushSize (sizeSlider.value);
 	}
 
 	public void ReduceBrushSize(float amt) {

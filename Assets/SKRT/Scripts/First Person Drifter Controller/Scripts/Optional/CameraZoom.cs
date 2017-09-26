@@ -20,7 +20,7 @@ public class CameraZoom : MonoBehaviour
 	
 	void Update ()
 	{
-		if( Input.GetButton("Fire2") )
+		if( Input.GetButton("Zoom") )
 		{
 			targetFOV = zoomFOV;
 		}

@@ -9,12 +9,12 @@ public class CameraController : MonoBehaviour {
 	public float offsetZ;
 	public float offsetY;
 
-	private Transform m_playerTransform;
+	public Transform m_playerTransform;
 	private	Transform m_camTransform;
 
 	// Use this for initialization
 	void Start () {
-		m_playerTransform = PlayerManager.localPlayer.transform;
+		//m_playerTransform = PlayerManager.localPlayer.transform;
 		m_camTransform = playerCam.transform;
 	}
 	

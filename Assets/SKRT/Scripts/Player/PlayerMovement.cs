@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour {
 	public float airDrag;
 
 	public bool isGrounded { get; private set; }
+	public Vector3 surfaceNormal { get; private set; }
+
+	public Transform modelTransform;
 
 	private Rigidbody m_rigidbody;
 	private ThirdPersonMouseLook m_mouseLook;
@@ -28,11 +31,8 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public void UpdateMovement() {
-
-		UpdateIsGrounded ();
 		UpdateVelocity ();
 		UpdateJump ();
-
 	}
 
 	void UpdateVelocity() {
@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour {
 		input.Normalize ();
 
 		// get forward vector
-		Vector3 forwardVec = transform.forward;
+		Vector3 forwardVec = modelTransform.forward;
 
 		// forward velocity
 		float currentSpeed = Vector3.Dot (m_rigidbody.velocity, forwardVec);
@@ -74,10 +74,11 @@ public class PlayerMovement : MonoBehaviour {
 		}
 	}
 
-	void UpdateIsGrounded() {
+	public void UpdateIsGrounded() {
 		RaycastHit hit;
 		if (Physics.Raycast (transform.position, -transform.up, out hit, 1.3f)) {
 			isGrounded = true;
+			surfaceNormal = hit.normal;
 			m_rigidbody.drag = m_defaultDrag;
 		} else {
 			isGrounded = false;

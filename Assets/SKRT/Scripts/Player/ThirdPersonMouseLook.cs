@@ -9,12 +9,11 @@ public class ThirdPersonMouseLook : MonoBehaviour {
 
 	/// angular velocity about transform.up
 	public float m_turnAngVel { get; private set; }
-
-	private Rigidbody m_rigidbody;
+	private Rigidbody m_modelRigidbody;
 
 	// Use this for initialization
 	void Start () {
-		m_rigidbody = GetComponent<Rigidbody> ();
+		m_modelRigidbody = model.GetComponent<Rigidbody> ();
 	}
 
 	public void UpdateRotation() {
@@ -22,12 +21,12 @@ public class ThirdPersonMouseLook : MonoBehaviour {
 		ApplyTorque (turnTorque);
 
 		// lean model
-		m_turnAngVel = Vector3.Dot(m_rigidbody.angularVelocity, transform.up);
-		model.localRotation = Quaternion.AngleAxis(-m_turnAngVel * 3F, Vector3.forward);
+		m_turnAngVel = Vector3.Dot(m_modelRigidbody.angularVelocity, Vector3.up);
+		//model.localRotation = Quaternion.AngleAxis(-m_turnAngVel * 3F, Vector3.forward);
 	}
 
 	void ApplyTorque(Vector3 torque) {
-		torque = torque * Time.deltaTime * m_rigidbody.mass;
-		m_rigidbody.AddTorque (torque);
+		torque = torque * Time.deltaTime * m_modelRigidbody.mass;
+		m_modelRigidbody.AddTorque (torque);
 	}
 }

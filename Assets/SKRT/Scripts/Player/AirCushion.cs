@@ -21,7 +21,7 @@ public class AirCushion : MonoBehaviour {
 	void FixedUpdate () {
 		
 		RaycastHit hit;
-		float mg = m_rigidBody.mass * Physics.gravity.y;
+		//float mg = m_rigidBody.mass * Physics.gravity.y;
 		foreach (Transform t in cushions) {
 			Ray ray = new Ray (t.position, -t.up);
 			if (Physics.Raycast (ray, out hit, hoverHeight)) {

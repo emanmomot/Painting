@@ -7,8 +7,9 @@
 	}
 	SubShader
 	{
-		Tags { "RenderType"="Opaque" }
-		LOD 100
+		Tags{ "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent" "PreviewType" = "Plane" }
+        Blend SrcAlpha OneMinusSrcAlpha
+
 
 		Pass
 		{

@@ -7,17 +7,25 @@ using UnityEngine;
 using System.Collections;
 
 public class ColorSelector : MonoBehaviour {
+	public static ColorSelector singleton;
+
 	public Camera refCamera;
-	public GameObject selectorImage,outerCursor,innerCursor;
+	public GameObject selectorImage, outerCursor, innerCursor;
+	public GameObject colorSelector;
 	public SpriteRenderer finalColorSprite;
+
+	public bool isOpen { get; private set; }
 
 	Color finalColor, selectedColor;
 	float selectorAngle=0.0f;
 	Vector2 innerDelta=Vector2.zero;
-	static ColorSelector myslf;
+
+	Vector2 innerPos;
+
+	Transform transform;
 
 	void Awake () {
-		myslf = this;
+		singleton = this;
 	}
 	void Start () {
 		if (refCamera == null)
@@ -25,12 +33,30 @@ public class ColorSelector : MonoBehaviour {
 		selectedColor = Color.red;
 		SelectInnerColor (Vector2.zero);
 		finalColorSprite.color=finalColor;
+		transform = colorSelector.transform;
 
 	}
 
 	void Update () {
-		if (Input.GetMouseButton (0)) {
-			UserInputUpdate ();
+		if (Input.GetAxis ("SelectColor") > 0) {
+			if (!isOpen) {
+				colorSelector.SetActive (true);
+				isOpen = true;
+			}
+
+			Vector2 selection = new Vector2 (Input.GetAxis ("Mouse X"), Input.GetAxis ("Mouse Y"));
+			if (selection.magnitude > .001f) {
+
+				SelectOuterColor (selection);
+			}
+
+			Vector2 innerselection = .05f * new Vector2 (Input.GetAxis ("Horizontal"), Input.GetAxis ("Vertical"));
+			innerDelta += innerselection;
+			SelectInnerColor (innerDelta);
+
+		} else if(isOpen) {
+			colorSelector.SetActive (false);
+			isOpen = false;
 		}
 	}
 
@@ -174,6 +200,6 @@ public class ColorSelector : MonoBehaviour {
 		}
 	}
 	public static Color GetColor(){
-		return myslf.finalColor;
+		return singleton.finalColor;
 	}
 }

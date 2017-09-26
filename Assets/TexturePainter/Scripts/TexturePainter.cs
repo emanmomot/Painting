@@ -32,8 +32,19 @@ public class TexturePainter : MonoBehaviour {
 	Painter_BrushMode mode; //Our painter mode (Paint brushes or decals)
 	float brushSize = 1.0f; //The size of our brush
 	Color brushColor; //The selected color
-	int brushCounter = 0, MAX_BRUSH_COUNT = 500; //To avoid having millions of brushes
+	int brushCounter = 0, MAX_BRUSH_COUNT = 10000; //To avoid having millions of brushes
 	bool saving = false; //Flag to check if we are saving the texture
+
+	public DotPool dotPool { get; private set; }
+
+	Vector2 brushPos;
+	SmoothBrush smoothBrush;
+
+	const float BRUSH_STEP = .01f;
+	const float CP_TIME = .15f;
+	const float PAINT_RANGE = 15F;
+
+	private float cpTimer;
 
 	void Awake () {
 		singleton = this;
@@ -41,57 +52,75 @@ public class TexturePainter : MonoBehaviour {
 	}
 
 	void Start () {
+		dotPool = new DotPool ();
 	}
 	
-	void Update () {
+	public void UpdateTP () {
 		brushColor = ColorSelector.GetColor ();	//Updates our painted color with the selected color
 
 		UpdateBrushCursor ();
-	}
 
-	public void Paint() {
-		DoAction ();
-	}
+		if (smoothBrush != null) {
+			smoothBrush.UpdateCursorPos (brushPos, brushSize);
+			cpTimer += Time.deltaTime;
+			if (cpTimer > CP_TIME) {
+				smoothBrush.AddCP (brushPos, brushSize);
+				cpTimer = 0;
+			}
+			smoothBrush.UpdateStroke ();
 
-	//The main action, instantiates a brush or decal entity at the clicked position on the UV map
-	void DoAction () {	
-		if (saving) {
-			return;
 		}
 
-		Vector3 uvWorldPosition = Vector3.zero;	
-		PaintableObject paintableObject = null;
-		if (HitTestUVPosition (ref uvWorldPosition, ref paintableObject)) {
-
-			GameObject brushObj;
-
-			if (mode == Painter_BrushMode.PAINT) {
-
-				brushObj = (GameObject)Instantiate (Resources.Load ("TexturePainter-Instances/BrushEntity")); //Paint a brush
-				SpriteRenderer rend = brushObj.GetComponent<SpriteRenderer>();
-				rend.color = brushColor; //Set the brush color
-				rend.sortingOrder = paintableObject.GetBrushContainer().childCount;
+		if (lastPaintableObject != null) {
+			if (smoothBrush != null && !PlayerInput.singleton.isTriggerHeld) {
+				EndPaint ();
 			} else {
-				brushObj = (GameObject)Instantiate(Resources.Load("TexturePainter-Instances/DecalEntity")); //Paint a decal
-			}
-			brushColor.a = brushSize * 2.0f; // Brushes have alpha to have a merging effect when painted over.
-			brushObj.transform.parent = paintableObject.GetBrushContainer(); //Add the brush to our container to be wiped later
-			brushObj.transform.localPosition = uvWorldPosition; //The position of the brush (in the UVMap)
-			brushObj.transform.localScale *= brushSize;//The size of the brush
-
-			RenderCanvas (paintableObject, true);
-
-			//Add to the max brushes
-			brushCounter++; 
-
-			//If we reach the max brushes available, flatten the texture and clear the brushes
-			if (brushCounter >= MAX_BRUSH_COUNT) { 
-				brushCursor.SetActive (false);
-				saving = true;
-				StartCoroutine (SaveTexture (paintableObject, .1f));
-				//Invoke ("SaveTexture", 0.1f);
+				RenderCanvas (lastPaintableObject, true);
 			}
 		}
+			
+	}
+
+	public bool IsOnPaintableObject() {
+		return lastPaintableObject != null;
+	}
+
+	public bool IsPainting() {
+		return smoothBrush != null;
+	}
+		
+	public void StartPaint(Vector2 pos) {
+		smoothBrush = new SmoothBrush (pos, brushSize, BRUSH_STEP, lastPaintableObject);
+	}
+
+	public void EndPaint() {
+		smoothBrush.AddCP (brushPos, brushSize);
+		smoothBrush.UpdateStroke ();
+		smoothBrush = null;
+
+		RenderCanvas (lastPaintableObject, false);
+		SaveTexture (lastPaintableObject);
+	}
+
+	public GameObject MakeDot(PaintableObject paintableObject, Vector2 pos, float size) {
+		GameObject brushObj;
+
+		brushObj = dotPool.GetDot (); //Paint a brush
+		SpriteRenderer rend = brushObj.GetComponent<SpriteRenderer>();
+		rend.color = brushColor; //Set the brush color
+		rend.sortingOrder = paintableObject.GetBrushContainer().childCount;
+	
+		//brushColor.a = brushSize * 2.0f; // Brushes have alpha to have a merging effect when painted over.
+		brushObj.transform.SetParent(paintableObject.GetBrushContainer(),false);
+		//brushObj.transform.parent = paintableObject.GetBrushContainer(); //Add the brush to our container to be wiped later
+		brushObj.transform.localPosition = new Vector3(pos.x, pos.y, 0); //The position of the brush (in the UVMap)
+
+		brushObj.transform.localScale = new Vector3 (brushObj.transform.localScale.x * paintableObject.texScale.x, 
+														brushObj.transform.localScale.y * paintableObject.texScale.y, 
+														brushObj.transform.localScale.z);
+		brushObj.transform.localScale *= size;
+
+		return brushObj;
 	}
 
 	//To update at realtime the painting cursor on the mesh
@@ -101,22 +130,42 @@ public class TexturePainter : MonoBehaviour {
 		PaintableObject paintableObject = null;
 
 		if (!saving && HitTestUVPosition (ref uvWorldPosition, ref paintableObject)) {
-			Transform brushContainer = paintableObject.GetBrushContainer ();
+
+			Vector2 newBrushPos = new Vector2 (uvWorldPosition.x, uvWorldPosition.y);
 
 			// clear cursor out of last canvas
 			if (lastPaintableObject != null && lastPaintableObject != paintableObject) {
+				if (smoothBrush != null) {
+					EndPaint ();
+					lastPaintableObject = paintableObject;
+					StartPaint (newBrushPos);
+				} else {
+					RenderCanvas (lastPaintableObject, false);
+					lastPaintableObject = paintableObject;
+				}
+			} else {
+				lastPaintableObject = paintableObject;
+			}
+
+			brushCursor.SetActive (true);
+			brushCursor.GetComponent<SpriteRenderer> ().color = brushColor;
+
+			brushCursor.transform.localScale = paintableObject.texScale * brushSize * .15f;
+			brushCursor.transform.localPosition = uvWorldPosition;
+
+			brushPos = newBrushPos;
+
+			if (PlayerInput.singleton.isTriggerHeld && smoothBrush == null) {
+				StartPaint (brushPos);
+			}
+
+		} else if (lastPaintableObject != null) {
+			if (smoothBrush != null) {
+				EndPaint ();
+			} else {
 				RenderCanvas (lastPaintableObject, false);
 			}
 
-			lastPaintableObject = paintableObject;
-
-			brushCursor.SetActive (true);
-			brushCursor.transform.position = uvWorldPosition + brushContainer.transform.position;	
-
-			RenderCanvas (paintableObject, true);
-
-		} else if (lastPaintableObject != null) {
-			RenderCanvas (lastPaintableObject, false);
 			lastPaintableObject = null;
 		}		
 	}
@@ -125,22 +174,37 @@ public class TexturePainter : MonoBehaviour {
 	bool HitTestUVPosition(ref Vector3 uvWorldPosition, ref PaintableObject paintableObject) {
 		
 		RaycastHit hit;
+		//RaycastHit borderHit;
+
 		Vector3 cursorPos = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, 0.0f);
+		//Vector3 borderOffset = new Vector3 (5, 0, 0);
+
 		Ray cursorRay = sceneCamera.ScreenPointToRay (cursorPos);
-		if (Physics.Raycast (cursorRay, out hit, 200, paintableLayerMask)) {
+		//Ray borderRay = sceneCamera.ScreenPointToRay (cursorPos + borderOffset);
+
+		if (Physics.Raycast (cursorRay, out hit, PAINT_RANGE, paintableLayerMask)) {
+
+			// cursor is overlapping multiple objects
+			//if (hit.collider != borderHit.collider) {
+			//	return false;
+			//}
 			
 			paintableObject = hit.collider.GetComponent<PaintableObject> ();
 			if (paintableObject == null) {
 				return false;
 			}
 
-			/*MeshCollider meshCollider = hit.collider as MeshCollider;
+			MeshCollider meshCollider = hit.collider as MeshCollider;
 			if (meshCollider == null || meshCollider.sharedMesh == null) {
 				return false;			
-			}*/
+			}
 
+			Vector2 pixelUV = new Vector2 (hit.textureCoord.x, hit.textureCoord.y);
+			//Vector2 borderUV = new Vector2 (borderHit.textureCoord.x, borderHit.textureCoord.y);
 
-			Vector2 pixelUV  = new Vector2(hit.textureCoord.x,hit.textureCoord.y);
+			//texScale = (borderUV - pixelUV).magnitude;
+			//Debug.Log (texScale);
+
 			uvWorldPosition.x = pixelUV.x - canvasCam.orthographicSize;//To center the UV on X
 			uvWorldPosition.y = pixelUV.y - canvasCam.orthographicSize;//To center the UV on Y
 			uvWorldPosition.z = 0.0f;
@@ -165,31 +229,25 @@ public class TexturePainter : MonoBehaviour {
 		brushContainer.gameObject.SetActive (false);
 	}
 
-	//Sets the base material with a our canvas texture, then removes all our brushes
-	IEnumerator SaveTexture (PaintableObject paintableObject, float delayTime) {
+	public void SaveTexture (PaintableObject paintableObject) {
 
-		yield return new WaitForSeconds(delayTime);
+		brushCursor.SetActive (false);
 
-		RenderTexture canvasTexture = paintableObject.GetCanvas ();
+		baseMaterial.mainTexture = paintableObject.GetCanvas();
+
+		canvasCam.targetTexture = paintableObject.GetBaseTex ();
+		canvasCam.Render ();
+
+		baseMaterial.mainTexture = paintableObject.GetBaseTex ();
+
 		Transform brushContainer = paintableObject.GetBrushContainer ();
-		
-		brushCounter = 0;
-		System.DateTime date = System.DateTime.Now;
-		RenderTexture.active = canvasTexture;
 
-		Texture2D tex = new Texture2D(canvasTexture.width, canvasTexture.height, TextureFormat.RGB24, false);		
-		tex.ReadPixels (new Rect (0, 0, canvasTexture.width, canvasTexture.height), 0, 0);
-		tex.Apply ();
-
-		RenderTexture.active = null;
-		paintableObject.SetBaseTex (tex);
-		//baseMaterial.mainTexture = tex;	//Put the painted texture as the base
-		foreach (Transform child in brushContainer) {//Clear brushes
-			Destroy(child.gameObject);
+		while (brushContainer.childCount > 0) {
+			dotPool.FreeDot (brushContainer.GetChild (0).gameObject);
 		}
 
-		//StartCoroutine ("SaveTextureToFile"); //Do you want to save the texture? This is your method!
-		Invoke ("ShowCursor", 0.1f);
+		ShowCursor ();
+
 	}
 	//Show again the user cursor (To avoid saving it to the texture)
 	void ShowCursor () {	
@@ -200,8 +258,8 @@ public class TexturePainter : MonoBehaviour {
 
 	public void SetBrushMode(Painter_BrushMode brushMode) { //Sets if we are painting or placing decals
 		mode = brushMode;
-		brushCursor.GetComponent<SpriteRenderer> ().sprite = brushMode == Painter_BrushMode.PAINT ? cursorPaint : cursorDecal;
 	}
+
 	public void SetBrushSize(float newBrushSize){ //Sets the size of the cursor brush or decal
 		brushSize = newBrushSize;
 		brushCursor.transform.localScale = Vector3.one * brushSize;

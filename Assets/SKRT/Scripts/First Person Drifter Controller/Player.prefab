@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 11400014}
   - component: {fileID: 11400010}
   - component: {fileID: 11400004}
+  - component: {fileID: 114203971631705394}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -65,7 +66,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.2, z: 0}
+  m_LocalPosition: {x: 67.3, y: 1.2, z: -81.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400000}
@@ -170,11 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeInWhenSceneStarts: 1
-  fadeColor:
-    r: 0
-    g: 0
-    b: 0
-    a: 1
+  fadeColor: {r: 0, g: 0, b: 0, a: 1}
   fadeTime: 5
 --- !u!114 &11400002
 MonoBehaviour:
@@ -239,8 +236,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axes: 1
   invertY: 0
-  sensitivityX: 8
-  sensitivityY: 8
+  sensitivityX: 15
+  sensitivityY: 15
   minimumX: -360
   maximumX: 360
   minimumY: -85
@@ -259,8 +256,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axes: 2
   invertY: 0
-  sensitivityX: 8
-  sensitivityY: 8
+  sensitivityX: 15
+  sensitivityY: 15
   minimumX: -360
   maximumX: 360
   minimumY: -85
@@ -277,13 +274,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ee6ff55b4ff41769a43e63bbd8c2ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 6
-  runSpeed: 10
-  limitDiagonalSpeed: 1
-  toggleRun: 0
-  jumpSpeed: 4
+  walkSpeed: 10
+  runSpeed: 20
+  enableRunning: 0
+  jumpSpeed: 8
   gravity: 10
-  fallingDamageThreshold: 10
   slideWhenOverSlopeLimit: 0
   slideOnTaggedObjects: 0
   slideSpeed: 5
@@ -325,3 +320,17 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100002}
   m_IsPrefabParent: 1
+--- !u!114 &114203971631705394
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b15bd783cce8445e7981a0e0ac2bec2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brushChangeRate: 0.1
+  minBrushSize: 0.3
+  maxBrushSize: 4
