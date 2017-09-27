@@ -56,7 +56,8 @@ public class MouseLook : MonoBehaviour
 			rotAverageX = 0f;
  
 			if (!ColorSelector.singleton.isOpen) {
-				rotationX += Input.GetAxis ("Mouse X") * sensitivityX * Time.timeScale;
+				float sensX = (Input.GetButton ("SlowLook")) ? sensitivityX * .3f : sensitivityX;
+				rotationX += Input.GetAxis ("Mouse X") * sensX * Time.timeScale;
 			}
 			rotArrayX.Add (rotationX);
  
@@ -86,7 +87,8 @@ public class MouseLook : MonoBehaviour
  			}
 
 			if (!ColorSelector.singleton.isOpen) {
-				rotationY += Input.GetAxis ("Mouse Y") * sensitivityY * invertFlag * Time.timeScale;
+				float sensY = (Input.GetButton ("SlowLook")) ? sensitivityY * .3f : sensitivityY;
+				rotationY += Input.GetAxis ("Mouse Y") * sensY * invertFlag * Time.timeScale;
 			
 				rotationY = Mathf.Clamp (rotationY, minimumY, maximumY);
  	
