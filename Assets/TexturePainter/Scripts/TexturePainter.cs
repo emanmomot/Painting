@@ -85,6 +85,10 @@ public class TexturePainter : MonoBehaviour {
 		return lastPaintableObject != null;
 	}
 
+	public PaintableObject GetPaintableObject() {
+		return lastPaintableObject;
+	}
+
 	public bool IsPainting() {
 		return smoothBrush != null;
 	}

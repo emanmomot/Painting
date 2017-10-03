@@ -13,10 +13,13 @@ public class PaintableObject : MonoBehaviour {
 	public RenderTexture m_baseTex;
 	private Transform m_brushContainer;
 
-	public Vector3 texScale = Vector3.one;
+	[HideInInspector]
+	public Vector3 texScale;
 
 	// Use this for initialization
 	void Start () {
+		texScale = TexScaleWriter.singleton.ReadValue (GetInstanceID ());
+
 		gameObject.layer = LayerMask.NameToLayer (TexturePainter.c_paintableLayer);
 
 		//m_canvas = new RenderTexture (canvasWidth, canvasHeight, 24);
@@ -45,8 +48,6 @@ public class PaintableObject : MonoBehaviour {
 		TexturePainter.singleton.RenderCanvas (this, false);
 
 		rend.material.mainTexture = m_canvas;
-
-		texScale = new Vector3 (1F / transform.localScale.x, 1F / transform.localScale.y, 1F / transform.localScale.z);
 	}
 	
 	// Update is called once per frame
@@ -68,5 +69,10 @@ public class PaintableObject : MonoBehaviour {
 
 	public Transform GetBrushContainer() {
 		return m_brushContainer;
+	}
+
+	public void SaveTexScale() {
+		TexScaleWriter.singleton.UpdateValue (GetInstanceID (), texScale);
+		TexScaleWriter.singleton.WriteMapToFile ();
 	}
 }

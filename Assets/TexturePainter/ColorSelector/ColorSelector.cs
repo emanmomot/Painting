@@ -39,6 +39,10 @@ public class ColorSelector : MonoBehaviour {
 	}
 
 	void Update () {
+		if (TexScaleTool.singleton.isOpen) {
+			return;
+		}
+
 		if (Input.GetAxis ("SelectColor") > 0) {
 			if (!isOpen) {
 				colorSelector.SetActive (true);

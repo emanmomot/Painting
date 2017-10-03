@@ -52,14 +52,22 @@ public class PlayerInput : MonoBehaviour {
 		}
 
 		isTriggerHeld = paintAxis > 0;
+
+		if (TexScaleTool.singleton.isOpen) {
+			isTriggerHeld = false;
+		}
+
 		if (isTriggerHeld) {
 			TexturePainter.singleton.SetBrushSize (brushSize * paintAxis);
 		}
 
-		if (Input.GetButton ("IncBrushSize") && brushSize < maxBrushSize) {
-			brushSize += brushChangeRate;
-		} else if (Input.GetButton ("DecBrushSize") && brushSize > minBrushSize) {
-			brushSize -= brushChangeRate;
+		// if the tool is open we shouldn't change brush size
+		if (!TexScaleTool.singleton.isOpen) {
+			if (Input.GetButton ("IncBrushSize") && brushSize < maxBrushSize) {
+				brushSize += brushChangeRate;
+			} else if (Input.GetButton ("DecBrushSize") && brushSize > minBrushSize) {
+				brushSize -= brushChangeRate;
+			}
 		}
 
 		TexturePainter.singleton.UpdateTP ();
@@ -72,27 +80,6 @@ public class PlayerInput : MonoBehaviour {
 		if (!isTriggerHeld) {
 			TexturePainter.singleton.SetBrushSize (brushSize);
 		}
-
-
-
-		/*if (!isTriggerHeld && paintAxis > 0 && TexturePainter.singleton.IsOnPaintableObject()) {
-			isTriggerHeld = true;
-			TexturePainter.singleton.SetBrushSize (brushSize * paintAxis);
-			TexturePainter.singleton.StartPaint ();
-		}
-
-		if (isTriggerHeld) {
-			if (paintAxis > 0) {
-				TexturePainter.singleton.SetBrushSize (brushSize * paintAxis);
-			} else {
-				isTriggerHeld = false;
-				if (TexturePainter.singleton.IsPainting ()) {
-					TexturePainter.singleton.EndPaint ();
-				}
-			}
-		} else {
-			TexturePainter.singleton.SetBrushSize (brushSize);
-		}*/
 
 	}
 }

@@ -13,7 +13,7 @@ public class LockMouse : MonoBehaviour
     void Update()
     {
     	// lock when mouse is clicked
-    	if( Input.GetMouseButtonDown(0) && Time.timeScale > 0.0f )
+    	if( Input.GetMouseButtonDown(0) && Time.timeScale > 0.0f && !TexScaleTool.singleton.isOpen)
     	{
     		LockCursor(true);
     	}
