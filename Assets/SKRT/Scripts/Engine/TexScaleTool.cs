@@ -125,7 +125,7 @@ public class TexScaleTool : MonoBehaviour {
 	private void OpenTool() {
 		// cant open if were not on a paintable obj
 		if (!TexturePainter.singleton.IsOnPaintableObject ()) {
-			Debug.LogError ("Cannot open tex scale tool if you're not hovering on a paintable object");
+			Debug.LogWarning ("Cannot open tex scale tool if you're not hovering on a paintable object");
 			isOpen = false;
 			return;
 		}

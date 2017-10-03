@@ -5,8 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(MeshCollider))]
 public class PaintableObject : MonoBehaviour {
 
-	public int canvasWidth = 256;
-	public int canvasHeight = 256;
+	public int canvasWidth = 512;
+	public int canvasHeight = 512;
 	public int depth = 24;
 
 	private RenderTexture m_canvas;
