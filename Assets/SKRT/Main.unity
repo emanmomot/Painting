@@ -229,6 +229,8 @@ MonoBehaviour:
   canvasWidth: 512
   canvasHeight: 512
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!64 &19434115
@@ -354,6 +356,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!64 &20179352
@@ -935,6 +939,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!33 &53808247
@@ -1106,6 +1112,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!23 &56472710
@@ -1246,6 +1254,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!1 &60499003
@@ -2089,6 +2099,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!64 &115268946
@@ -5750,6 +5762,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!64 &136123436
@@ -6245,6 +6259,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!64 &163320335
@@ -6509,6 +6525,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!1 &177039826
@@ -6631,6 +6649,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!64 &186174623
@@ -6977,6 +6997,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!1 &199620896
@@ -7165,6 +7187,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!1 &210538744
@@ -7227,6 +7251,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!23 &210538748
@@ -7404,6 +7430,8 @@ MonoBehaviour:
   canvasWidth: 512
   canvasHeight: 512
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!23 &225412296
@@ -7683,6 +7711,8 @@ MonoBehaviour:
   canvasWidth: 512
   canvasHeight: 512
   depth: 24
+  matIndex: 1
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!23 &257417789
@@ -7870,7 +7900,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 263716197}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d763ed3c5011a4b45bd68df94fab9f3c, type: 3}
   m_Name: 
@@ -7878,6 +7908,8 @@ MonoBehaviour:
   canvasWidth: 512
   canvasHeight: 512
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!64 &263716200
@@ -8003,6 +8035,8 @@ MonoBehaviour:
   canvasWidth: 512
   canvasHeight: 512
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!23 &268516408
@@ -11556,6 +11590,8 @@ MonoBehaviour:
   canvasWidth: 512
   canvasHeight: 512
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!23 &278488642
@@ -12009,6 +12045,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!1 &347854249
@@ -12983,6 +13021,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!64 &469035555
@@ -14245,6 +14285,8 @@ MonoBehaviour:
   canvasWidth: 512
   canvasHeight: 512
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!23 &528447533
@@ -14440,6 +14482,8 @@ MonoBehaviour:
   canvasWidth: 512
   canvasHeight: 512
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!23 &534611652
@@ -14783,6 +14827,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!1 &549739195
@@ -15127,6 +15173,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!64 &571529250
@@ -15839,6 +15887,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!1 &649232311
@@ -16238,6 +16288,8 @@ MonoBehaviour:
   canvasWidth: 512
   canvasHeight: 512
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!23 &678678847
@@ -16407,6 +16459,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!1 &686682984
@@ -19985,6 +20039,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!1 &707533184
@@ -20065,6 +20121,8 @@ MonoBehaviour:
   canvasWidth: 512
   canvasHeight: 512
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!64 &709366329
@@ -20242,6 +20300,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!1 &712938630
@@ -20380,6 +20440,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!64 &720422993
@@ -20642,6 +20704,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!1 &730294713
@@ -20694,6 +20758,8 @@ MonoBehaviour:
   canvasWidth: 512
   canvasHeight: 512
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!23 &730294716
@@ -20863,6 +20929,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!1 &783704575
@@ -21153,6 +21221,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!1 &829178734
@@ -21439,6 +21509,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!1 &869185652
@@ -21695,6 +21767,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!1 &886042304
@@ -22007,6 +22081,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!64 &891641076
@@ -22272,6 +22348,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!1 &906644013
@@ -22373,6 +22451,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!1 &909750897
@@ -22474,6 +22554,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!1 &911402114
@@ -22889,6 +22971,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!23 &920487150
@@ -23066,6 +23150,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!64 &934402300
@@ -23235,6 +23321,8 @@ MonoBehaviour:
   canvasWidth: 512
   canvasHeight: 512
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!23 &954846990
@@ -23443,6 +23531,8 @@ MonoBehaviour:
   canvasWidth: 2048
   canvasHeight: 2048
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!1 &960781797
@@ -24197,6 +24287,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!1 &1091699229
@@ -24694,6 +24786,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!23 &1122353787
@@ -24785,6 +24879,8 @@ MonoBehaviour:
   canvasWidth: 512
   canvasHeight: 512
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!95 &1125139895
@@ -26104,6 +26200,8 @@ MonoBehaviour:
   canvasWidth: 512
   canvasHeight: 512
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!23 &1265742637
@@ -26341,6 +26439,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!1 &1284284322
@@ -26867,6 +26967,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!64 &1306655005
@@ -27812,6 +27914,8 @@ MonoBehaviour:
   canvasWidth: 512
   canvasHeight: 512
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!23 &1365628974
@@ -27981,6 +28085,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!1 &1380699207
@@ -28082,6 +28188,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!1 &1383345752
@@ -28540,7 +28648,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1456947149}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d763ed3c5011a4b45bd68df94fab9f3c, type: 3}
   m_Name: 
@@ -28548,6 +28656,8 @@ MonoBehaviour:
   canvasWidth: 512
   canvasHeight: 512
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!64 &1456947152
@@ -28723,6 +28833,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!1 &1465354170
@@ -28774,6 +28886,8 @@ MonoBehaviour:
   canvasWidth: 512
   canvasHeight: 512
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!23 &1465354173
@@ -32584,6 +32698,8 @@ MonoBehaviour:
   canvasWidth: 512
   canvasHeight: 512
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!23 &1498136674
@@ -32691,6 +32807,8 @@ MonoBehaviour:
   canvasWidth: 512
   canvasHeight: 512
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!64 &1502063089
@@ -32904,6 +33022,8 @@ MonoBehaviour:
   canvasWidth: 512
   canvasHeight: 512
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!23 &1510987893
@@ -33064,6 +33184,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!64 &1513736195
@@ -33303,6 +33425,8 @@ MonoBehaviour:
   canvasWidth: 512
   canvasHeight: 512
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!23 &1522961874
@@ -33897,6 +34021,8 @@ MonoBehaviour:
   canvasWidth: 512
   canvasHeight: 512
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!23 &1577214037
@@ -34795,6 +34921,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!23 &1684060059
@@ -35170,6 +35298,8 @@ MonoBehaviour:
   canvasWidth: 512
   canvasHeight: 512
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!64 &1703184138
@@ -35295,6 +35425,8 @@ MonoBehaviour:
   canvasWidth: 512
   canvasHeight: 512
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!23 &1707740991
@@ -35451,6 +35583,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!1 &1718436263
@@ -35542,6 +35676,8 @@ MonoBehaviour:
   canvasWidth: 512
   canvasHeight: 512
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!64 &1718436268
@@ -37453,6 +37589,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!64 &1828483645
@@ -37578,6 +37716,8 @@ MonoBehaviour:
   canvasWidth: 512
   canvasHeight: 512
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!23 &1831433987
@@ -38047,6 +38187,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!1 &1848939558
@@ -38264,6 +38406,8 @@ MonoBehaviour:
   canvasWidth: 512
   canvasHeight: 512
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!64 &1861149762
@@ -38515,6 +38659,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!1 &1871084799
@@ -38653,6 +38799,8 @@ MonoBehaviour:
   canvasWidth: 512
   canvasHeight: 512
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!23 &1872308966
@@ -38835,7 +38983,7 @@ Camera:
   m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -39026,6 +39174,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!4 &1906987923 stripped
@@ -39175,6 +39325,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!64 &1912043612
@@ -39386,6 +39538,8 @@ MonoBehaviour:
   canvasWidth: 512
   canvasHeight: 512
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!23 &1939755787
@@ -39542,6 +39696,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!1 &1949254808
@@ -39959,6 +40115,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!64 &1961367892
@@ -40490,6 +40648,8 @@ MonoBehaviour:
   canvasWidth: 512
   canvasHeight: 512
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!64 &1987438982
@@ -41173,6 +41333,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!1 &2065272476
@@ -41570,6 +41732,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!1 &2093599956
@@ -42053,6 +42217,8 @@ MonoBehaviour:
   canvasWidth: 1024
   canvasHeight: 1024
   depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
   m_baseTex: {fileID: 0}
   texScale: {x: 0, y: 0, z: 0}
 --- !u!23 &2118825874

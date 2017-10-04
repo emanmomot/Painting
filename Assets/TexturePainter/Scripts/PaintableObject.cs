@@ -8,18 +8,25 @@ using System;
 [RequireComponent(typeof(MeshCollider))]
 public class PaintableObject : MonoBehaviour {
 
+	const string c_paintTexUniform = "_PaintTex";
+
 	public int canvasWidth = 512;
 	public int canvasHeight = 512;
 	public int depth = 24;
 
-	private RenderTexture m_canvas;
+	public int matIndex = 0;
+
+	public RenderTexture m_canvas;
 	public RenderTexture m_baseTex;
 	private Transform m_brushContainer;
 
 	[HideInInspector]
 	public Vector3 texScale;
 
+	private Material mat;
 	private int guid;
+
+	private bool hasInitializedCanvas;
 
 	// Use this for initialization
 	void Start () {
@@ -27,37 +34,47 @@ public class PaintableObject : MonoBehaviour {
 
 		gameObject.layer = LayerMask.NameToLayer (TexturePainter.c_paintableLayer);
 
-		//m_canvas = new RenderTexture (canvasWidth, canvasHeight, 24);
-		m_canvas = new RenderTexture (canvasWidth, canvasHeight, 24, RenderTextureFormat.ARGB32);
+		m_canvas = new RenderTexture (canvasWidth, canvasHeight, depth, RenderTextureFormat.ARGB32);
 		m_brushContainer = GameObject.Instantiate (TexturePainter.singleton.brushContainerPrefab, 
 			TexturePainter.singleton.brushContainerParent, false).transform;
 		m_brushContainer.gameObject.SetActive (false);
 
-		m_baseTex = new RenderTexture (canvasWidth, canvasHeight, 24, RenderTextureFormat.ARGB32);
+		m_baseTex = new RenderTexture (canvasWidth, canvasHeight, depth, RenderTextureFormat.ARGB32);
 
 		Renderer rend = GetComponent<Renderer> ();
-		Texture matTex = rend.material.mainTexture;
+		mat = rend.materials [matIndex];
 
-		// if there is no base tex, create a white tex to start with
-		if (matTex == null) {
-			Texture2D whiteTex = new Texture2D(1, 1, TextureFormat.ARGB32, false);
-			whiteTex.SetPixel(0, 0, new Color(1.0f, 1.0f, 1.0f, 1.0f));
-			whiteTex.Apply();
+		string paintTexProp = c_paintTexUniform;
+		if (!mat.HasProperty (paintTexProp)) {
+			paintTexProp = "_MainTex";
+		}
 
-			matTex = whiteTex;
+		// get the default texture of the mat
+		Texture matTex = mat.GetTexture (paintTexProp);
+		// if none, check if we have default color
+		if (matTex == null && mat.HasProperty ("_Color")) { 
+			matTex = CreateSmallTexture (mat.GetColor ("_Color"));
+		}
+
+		// if we got a tex, blit to the base
+		if (matTex != null) {
+			Graphics.Blit (matTex, m_baseTex);
 		}
 
 		// blit mat texture into m_baseTex
-		Graphics.Blit (matTex, m_baseTex);
 
-		TexturePainter.singleton.RenderCanvas (this, false);
 
-		rend.material.mainTexture = m_canvas;
+
+		mat.SetTexture (paintTexProp, m_canvas);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		// we have to render the basetex to the canvas outside of start
+		if (!hasInitializedCanvas) {
+			TexturePainter.singleton.RenderCanvas (this, false);
+			hasInitializedCanvas = true;
+		}
 	}
 
 	public RenderTexture GetCanvas() {
@@ -81,6 +98,20 @@ public class PaintableObject : MonoBehaviour {
 		TexScaleWriter.singleton.WriteMapToFile ();
 	}
 
+	private Texture2D CreateSmallTexture(Color color) {
+		Texture2D texture = new Texture2D(2, 2, TextureFormat.ARGB32, false);
+
+		// set the pixel values
+		texture.SetPixel(0, 0, color);
+		texture.SetPixel(1, 0, color);
+		texture.SetPixel(0, 1, color);
+		texture.SetPixel(1, 1, color);
+
+		// Apply all SetPixel calls
+		texture.Apply();
+
+		return texture;
+	}
 
 	public int GetGUID() {
 #if UNITY_EDITOR

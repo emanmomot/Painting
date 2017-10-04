@@ -222,8 +222,8 @@ public class TexturePainter : MonoBehaviour {
 			if (meshCollider == null || meshCollider.sharedMesh == null) {
 				return false;			
 			}
-
-			Vector2 pixelUV = new Vector2 (hit.textureCoord.x, hit.textureCoord.y);
+				
+			Vector2 pixelUV = new Vector2 (hit.textureCoord2.x, hit.textureCoord2.y);
 			//Vector2 borderUV = new Vector2 (borderHit.textureCoord.x, borderHit.textureCoord.y);
 
 			//texScale = (borderUV - pixelUV).magnitude;
