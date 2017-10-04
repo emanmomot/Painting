@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+using System.Reflection;
+using System;
 
 [RequireComponent(typeof(MeshCollider))]
 public class PaintableObject : MonoBehaviour {
@@ -16,9 +19,11 @@ public class PaintableObject : MonoBehaviour {
 	[HideInInspector]
 	public Vector3 texScale;
 
+	private int guid;
+
 	// Use this for initialization
 	void Start () {
-		texScale = TexScaleWriter.singleton.ReadValue (GetInstanceID ());
+		texScale = TexScaleWriter.singleton.ReadValue (GetGUID());
 
 		gameObject.layer = LayerMask.NameToLayer (TexturePainter.c_paintableLayer);
 
@@ -72,7 +77,28 @@ public class PaintableObject : MonoBehaviour {
 	}
 
 	public void SaveTexScale() {
-		TexScaleWriter.singleton.UpdateValue (GetInstanceID (), texScale);
+		TexScaleWriter.singleton.UpdateValue (GetGUID(), texScale);
 		TexScaleWriter.singleton.WriteMapToFile ();
+	}
+
+
+	public int GetGUID() {
+#if UNITY_EDITOR
+		if(guid == 0) {
+			PropertyInfo inspectorModeInfo =
+				typeof(SerializedObject).GetProperty("inspectorMode", BindingFlags.NonPublic | BindingFlags.Instance);
+
+			SerializedObject serializedObject = new SerializedObject(gameObject);
+			inspectorModeInfo.SetValue(serializedObject, InspectorMode.Debug, null);
+
+			SerializedProperty localIdProp =
+				serializedObject.FindProperty("m_LocalIdentfierInFile");   //note the misspelling!
+
+			guid = localIdProp.intValue;
+		}
+		return guid;
+#else 
+		throw new NotImplementedException("Cannot get guid when not running in editor. Serialize it before build!");
+#endif
 	}
 }
