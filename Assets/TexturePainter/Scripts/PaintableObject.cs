@@ -157,6 +157,10 @@ public class PaintableObject : MonoBehaviour {
 		return Application.dataPath + c_texSavePath + GetGUID() + ".png";
 	}
 
+	public void ClearTex() {
+		Texture2D tex = CreateSmallTexture (new Color (0, 0, 0, 0));
+		Graphics.Blit (tex, m_baseTex);
+	}
 
 	public int GetGUID() {
 #if UNITY_EDITOR

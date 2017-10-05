@@ -103,6 +103,10 @@ public class TexScaleTool : MonoBehaviour {
 		}
 	}
 
+	public void ClearTex() {
+		scaleObj.ClearTex ();
+	}
+
 	public void SubmitXScale() {
 		float newScale;
 		if (float.TryParse (xScaleInput.text, out newScale)) {
