@@ -25,7 +25,7 @@ public class PaintableObject : MonoBehaviour {
 	public Vector3 texScale;
 
 	private Material mat;
-	private int guid;
+	public int guid;
 
 	private bool hasInitializedCanvas;
 

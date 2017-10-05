@@ -865,6 +865,54 @@
         <float>0.1340057</float>
       </value>
     </item>
+    <item>
+      <key>
+        <int>541969773</int>
+      </key>
+      <value>
+        <float>0.178005785</float>
+      </value>
+    </item>
+    <item>
+      <key>
+        <int>25323685</int>
+      </key>
+      <value>
+        <float>1</float>
+      </value>
+    </item>
+    <item>
+      <key>
+        <int>2078450888</int>
+      </key>
+      <value>
+        <float>1</float>
+      </value>
+    </item>
+    <item>
+      <key>
+        <int>830051094</int>
+      </key>
+      <value>
+        <float>1</float>
+      </value>
+    </item>
+    <item>
+      <key>
+        <int>598479580</int>
+      </key>
+      <value>
+        <float>1</float>
+      </value>
+    </item>
+    <item>
+      <key>
+        <int>1841599841</int>
+      </key>
+      <value>
+        <float>0.0500057824</float>
+      </value>
+    </item>
   </dict>
   <dict>
     <item>
@@ -1729,6 +1777,54 @@
       </key>
       <value>
         <float>0.106005713</float>
+      </value>
+    </item>
+    <item>
+      <key>
+        <int>541969773</int>
+      </key>
+      <value>
+        <float>0.1820058</float>
+      </value>
+    </item>
+    <item>
+      <key>
+        <int>25323685</int>
+      </key>
+      <value>
+        <float>1</float>
+      </value>
+    </item>
+    <item>
+      <key>
+        <int>2078450888</int>
+      </key>
+      <value>
+        <float>1</float>
+      </value>
+    </item>
+    <item>
+      <key>
+        <int>830051094</int>
+      </key>
+      <value>
+        <float>1</float>
+      </value>
+    </item>
+    <item>
+      <key>
+        <int>598479580</int>
+      </key>
+      <value>
+        <float>1</float>
+      </value>
+    </item>
+    <item>
+      <key>
+        <int>1841599841</int>
+      </key>
+      <value>
+        <float>0.03600578</float>
       </value>
     </item>
   </dict>
