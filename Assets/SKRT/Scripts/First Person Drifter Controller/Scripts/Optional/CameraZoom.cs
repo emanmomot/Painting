@@ -16,19 +16,20 @@ public class CameraZoom : MonoBehaviour
 	void Start ()
 	{
 		SetBaseFOV(GetComponent<Camera>().fieldOfView);
+		targetFOV = baseFOV;
 	}
 	
 	void Update ()
 	{
-		if( Input.GetButton("Zoom") )
+		if( Input.GetButtonDown("Zoom") )
 		{
-			targetFOV = zoomFOV;
+			if (targetFOV == zoomFOV) {
+				targetFOV = baseFOV;
+			} else {
+				targetFOV = zoomFOV;
+			}
 		}
-		else
-		{
-			targetFOV = baseFOV;
-		}
-		
+
 		UpdateZoom();
 	}
 	

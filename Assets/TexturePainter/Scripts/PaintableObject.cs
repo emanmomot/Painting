@@ -8,6 +8,7 @@ using System;
 [RequireComponent(typeof(MeshCollider))]
 public class PaintableObject : MonoBehaviour {
 
+	const string c_texSavePath = "/save_data/textures/";
 	const string c_paintTexUniform = "_PaintTex";
 
 	public int canvasWidth = 512;
@@ -61,9 +62,13 @@ public class PaintableObject : MonoBehaviour {
 			Graphics.Blit (matTex, m_baseTex);
 		}
 
-		// blit mat texture into m_baseTex
-
-
+		// read saved painting
+		if (GUIManager.singleton.saveAndLoadTextures) {
+			Texture2D texSave = ReadTexFromFile ();
+			if (texSave != null) {
+				Graphics.Blit (texSave, m_baseTex);
+			}
+		}
 
 		mat.SetTexture (paintTexProp, m_canvas);
 	}
@@ -112,6 +117,46 @@ public class PaintableObject : MonoBehaviour {
 
 		return texture;
 	}
+
+	// save tex on destroy
+	void OnDestroy () {
+		if (GUIManager.singleton.saveAndLoadTextures) {
+			WriteTexToFile (m_baseTex);
+		}
+	}
+
+	void WriteTexToFile(RenderTexture renderTexture) {
+		// write contents of RT into a texture2d
+		RenderTexture currentActiveRT = RenderTexture.active;
+		RenderTexture.active = renderTexture;
+		Texture2D tex = new Texture2D(renderTexture.width, renderTexture.height);
+		tex.ReadPixels(new Rect(0, 0, tex.width, tex.height), 0, 0);
+
+		// write texture2d to file
+		byte[] bytes = tex.EncodeToPNG();
+		System.IO.File.WriteAllBytes (GetTexSavePath (), bytes);
+
+		// clean up
+		UnityEngine.Object.Destroy(tex);
+		RenderTexture.active = currentActiveRT;
+	}
+
+	Texture2D ReadTexFromFile() {
+		if (!System.IO.File.Exists (GetTexSavePath ())) {
+			return null;
+		}
+
+		byte[] bytes;
+		Texture2D tex = new Texture2D (1, 1);
+		bytes = System.IO.File.ReadAllBytes (GetTexSavePath ());
+		tex.LoadImage (bytes);
+		return tex;
+	}
+
+	string GetTexSavePath() {
+		return Application.dataPath + c_texSavePath + GetGUID() + ".png";
+	}
+
 
 	public int GetGUID() {
 #if UNITY_EDITOR

@@ -15043,45 +15043,17 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 11400014, guid: 25e3ab2d6992a48f3ab7455baed062e0, type: 2}
-      propertyPath: walkSpeed
-      value: 10
+    - target: {fileID: 400002, guid: 25e3ab2d6992a48f3ab7455baed062e0, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.6559948
       objectReference: {fileID: 0}
-    - target: {fileID: 11400014, guid: 25e3ab2d6992a48f3ab7455baed062e0, type: 2}
-      propertyPath: runSpeed
-      value: 25
+    - target: {fileID: 400002, guid: 25e3ab2d6992a48f3ab7455baed062e0, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.65599453
       objectReference: {fileID: 0}
-    - target: {fileID: 11400014, guid: 25e3ab2d6992a48f3ab7455baed062e0, type: 2}
-      propertyPath: jumpSpeed
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400014, guid: 25e3ab2d6992a48f3ab7455baed062e0, type: 2}
-      propertyPath: enableRunning
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2000000, guid: 25e3ab2d6992a48f3ab7455baed062e0, type: 2}
-      propertyPath: m_ClearFlags
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2000000, guid: 25e3ab2d6992a48f3ab7455baed062e0, type: 2}
-      propertyPath: m_BackGroundColor.r
-      value: 0.9882353
-      objectReference: {fileID: 0}
-    - target: {fileID: 2000000, guid: 25e3ab2d6992a48f3ab7455baed062e0, type: 2}
-      propertyPath: m_BackGroundColor.g
-      value: 0.78676474
-      objectReference: {fileID: 0}
-    - target: {fileID: 2000000, guid: 25e3ab2d6992a48f3ab7455baed062e0, type: 2}
-      propertyPath: m_BackGroundColor.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2000000, guid: 25e3ab2d6992a48f3ab7455baed062e0, type: 2}
-      propertyPath: m_BackGroundColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400008, guid: 25e3ab2d6992a48f3ab7455baed062e0, type: 2}
-      propertyPath: m_Enabled
-      value: 1
+    - target: {fileID: 400002, guid: 25e3ab2d6992a48f3ab7455baed062e0, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.65599453
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 25e3ab2d6992a48f3ab7455baed062e0, type: 2}
@@ -35814,6 +35786,7 @@ GameObject:
   - component: {fileID: 1744049020}
   - component: {fileID: 1744049019}
   - component: {fileID: 1744049018}
+  - component: {fileID: 1744049021}
   m_Layer: 0
   m_Name: metalsheet6
   m_TagString: Untagged
@@ -35844,9 +35817,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1744049016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: d763ed3c5011a4b45bd68df94fab9f3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvasWidth: 512
+  canvasHeight: 512
+  depth: 24
+  matIndex: 0
+  m_canvas: {fileID: 0}
+  m_baseTex: {fileID: 0}
+  texScale: {x: 0, y: 0, z: 0}
 --- !u!23 &1744049019
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -35887,6 +35867,20 @@ MeshFilter:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1744049016}
+  m_Mesh: {fileID: 4300000, guid: e9677c20d8ab74b7292cc3624bf53ee2, type: 2}
+--- !u!64 &1744049021
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1744049016}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: e9677c20d8ab74b7292cc3624bf53ee2, type: 2}
 --- !u!1 &1748167864
 GameObject:

@@ -29,10 +29,8 @@ public class TexturePainter : MonoBehaviour {
 
 	PaintableObject lastPaintableObject;
 
-	Painter_BrushMode mode; //Our painter mode (Paint brushes or decals)
 	float brushSize = 1.0f; //The size of our brush
 	Color brushColor; //The selected color
-	int brushCounter = 0, MAX_BRUSH_COUNT = 10000; //To avoid having millions of brushes
 	bool saving = false; //Flag to check if we are saving the texture
 
 	public DotPool dotPool { get; private set; }
@@ -278,12 +276,6 @@ public class TexturePainter : MonoBehaviour {
 		saving = false;
 	}
 
-	////////////////// PUBLIC METHODS //////////////////
-
-	public void SetBrushMode(Painter_BrushMode brushMode) { //Sets if we are painting or placing decals
-		mode = brushMode;
-	}
-
 	public void SetBrushSize(float newBrushSize){ //Sets the size of the cursor brush or decal
 		brushSize = newBrushSize;
 		brushCursor.transform.localScale = Vector3.one * brushSize;
@@ -293,7 +285,6 @@ public class TexturePainter : MonoBehaviour {
 
 	#if !UNITY_WEBPLAYER 
 		IEnumerator SaveTextureToFile(Texture2D savedTexture){		
-			brushCounter=0;
 			string fullPath=System.IO.Directory.GetCurrentDirectory()+"\\UserCanvas\\";
 			System.DateTime date = System.DateTime.Now;
 			string fileName = "CanvasTexture.png";

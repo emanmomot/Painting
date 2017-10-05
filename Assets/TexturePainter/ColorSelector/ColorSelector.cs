@@ -22,7 +22,7 @@ public class ColorSelector : MonoBehaviour {
 
 	Vector2 innerPos;
 
-	Transform transform;
+	new Transform transform;
 
 	void Awake () {
 		singleton = this;

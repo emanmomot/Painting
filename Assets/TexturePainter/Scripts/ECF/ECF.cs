@@ -18,8 +18,6 @@ namespace ECF {
 
 		RasterBorder rasterBorder;
 		int drawingFieldWidth, drawingFieldHeight;
-		int iterations = 0;
-		bool breakFlag = false;
 
 		List<float> ti = new List<float>();
 
@@ -65,7 +63,7 @@ namespace ECF {
 		public List<Point> rasterize(List<Edge> edges) {
 			List<Point> points = new List<Point>();
 
-			int i, j, max_i, max_j, index;
+			int i, j, max_i, index;
 			int ymax = 0, ymin = drawingFieldHeight;
 			Edge edge;
 			Point temp;
@@ -254,7 +252,7 @@ namespace ECF {
 						}
 					}
 				} catch (Exception e) {
-
+					Debug.Log (e.Message);
 				}
 			}
 		}
@@ -412,7 +410,6 @@ namespace ECF {
 
 			if (error < MAX_ERROR) { 
 				drawCurve(seg, false);
-				breakFlag = false;
 				return "SUCCESS";
 			} else {
 				resetControlVertices(seg);
@@ -440,14 +437,13 @@ namespace ECF {
 
 
 		void clearVectorDistMap(int w, int h) {
-			int i, max_i, j, max_j;
+			int i, j;
 			List<Point> newArr;
 			Point nullPoint;
 
 			w = Mathf.FloorToInt(w);
 			h = Mathf.FloorToInt(h);
 
-			max_i = h; max_j = w;
 			vectorDistMap = new List<List<Point>> ();
 
 			for( i = 0; i < h; i += 1) {
@@ -578,7 +574,6 @@ namespace ECF {
 			Point prev = new Point (currentSeg.C3);
 			string updateResult;
 			CurveSegment nextSeg;
-			float tanLength;
 
 			updateResult = updateCurveSegment(x, y, currentSeg);
 

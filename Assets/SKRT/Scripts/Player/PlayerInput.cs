@@ -11,7 +11,6 @@ public class PlayerInput : MonoBehaviour {
 	public float maxBrushSize;
 
 	public bool isTriggerHeld { get; private set; }
-	private float brushSizeRange;
 
 	private float brushSize;
 
@@ -24,8 +23,6 @@ public class PlayerInput : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		brushSizeRange = maxBrushSize - minBrushSize;
-
 		if (Input.GetJoystickNames ().Length > 0) {
 			isJoystick = true;
 		}

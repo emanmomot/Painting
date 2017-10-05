@@ -17,7 +17,7 @@ public class TexScaleWriter
 		}
 	}
 
-	const string c_fileName = "/texScale.data";
+	const string c_fileName = "/save_data/texScale.data";
 
 	SerializableDictionary<int, float> texScaleMapX;
 	SerializableDictionary<int, float> texScaleMapY;
@@ -50,8 +50,8 @@ public class TexScaleWriter
 		}
 	}
 
-	public void WriteMapToFile(){
-		FileStream file = File.Create(Application.dataPath + c_fileName);
+	public void WriteMapToFile() {
+		FileStream file = File.Create (Application.dataPath + c_fileName);
 		XmlWriterSettings settings = new XmlWriterSettings ();
 		settings.NewLineHandling = NewLineHandling.Entitize;
 		settings.Indent = true;
@@ -69,7 +69,7 @@ public class TexScaleWriter
 		Debug.LogWarning ("Writing tex scale data to file");
 	}
 
-	public Vector3 ReadValue(int uid){
+	public Vector3 ReadValue(int uid) {
 		if (texScaleMapX.ContainsKey (uid)) {
 			Vector2 scale = new Vector2 (texScaleMapX [uid], texScaleMapY [uid]);
 			return new Vector3 (scale.x, scale.y, 1);
