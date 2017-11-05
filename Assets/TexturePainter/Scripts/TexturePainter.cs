@@ -22,6 +22,8 @@ public class TexturePainter : MonoBehaviour {
 	public GameObject brushContainerPrefab;
 
 	public GameObject brushCursor;//, brushContainer; //The cursor that overlaps the model and our container for the brushes painted
+	public GameObject brushCursorScalable;
+
 	public Camera sceneCamera, canvasCam;  //The camera that looks at the model, and the camera that looks at the canvas.
 	public Sprite cursorPaint, cursorDecal; // Cursor for the differen functions 
 	//public RenderTexture canvasTexture; // Render Texture that looks at our Base Texture and the painted brushes
@@ -38,6 +40,8 @@ public class TexturePainter : MonoBehaviour {
 	Vector2 brushPos;
 	SmoothBrush smoothBrush;
 
+	private Texture2D blackTex;
+
 	const float BRUSH_STEP = .01f;
 	const float CP_TIME = .15f;
 	const float PAINT_RANGE = 30F;
@@ -51,6 +55,8 @@ public class TexturePainter : MonoBehaviour {
 
 	void Start () {
 		dotPool = new DotPool ();
+
+		blackTex = Texture2D.blackTexture;
 	}
 	
 	public void UpdateTP () {
@@ -93,6 +99,7 @@ public class TexturePainter : MonoBehaviour {
 		
 	public void StartPaint(Vector2 pos) {
 		smoothBrush = new SmoothBrush (pos, brushSize, BRUSH_STEP, lastPaintableObject);
+		lastPaintableObject.ResetTransparency ();
 	}
 
 	public void EndPaint() {
@@ -170,9 +177,10 @@ public class TexturePainter : MonoBehaviour {
 			}
 
 			brushCursor.SetActive (true);
-			brushCursor.GetComponent<SpriteRenderer> ().color = brushColor;
+			brushCursorScalable.GetComponent<SpriteRenderer> ().color = brushColor;
 
-			brushCursor.transform.localScale = paintableObject.texScale * brushSize * .15f;
+			brushCursor.transform.localScale = paintableObject.texScale;
+			brushCursorScalable.transform.localScale = Vector3.one * brushSize * .15f;
 			brushCursor.transform.localPosition = uvWorldPosition;
 
 			brushPos = newBrushPos;
@@ -239,7 +247,7 @@ public class TexturePainter : MonoBehaviour {
 	}
 
 	public void RenderCanvas(PaintableObject paintableObject, bool withCursor) {
-		brushCursor.SetActive (withCursor);
+		brushCursor.SetActive (false);
 
 		Transform brushContainer = paintableObject.GetBrushContainer ();
 		brushContainer.gameObject.SetActive (true);
@@ -249,6 +257,17 @@ public class TexturePainter : MonoBehaviour {
 		canvasCam.targetTexture = paintableObject.GetCanvas ();
 		canvasCam.Render ();
 		brushContainer.gameObject.SetActive (false);
+
+		if (withCursor) {
+			brushCursor.SetActive (true);
+			baseMaterial.mainTexture = blackTex;
+			canvasCam.targetTexture = paintableObject.m_cursorTex;
+			canvasCam.Render ();
+		} else {
+			baseMaterial.mainTexture = blackTex;
+			canvasCam.targetTexture = paintableObject.m_cursorTex;
+			canvasCam.Render ();
+		}
 	}
 
 	public void SaveTexture (PaintableObject paintableObject) {

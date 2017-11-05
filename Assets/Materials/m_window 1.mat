@@ -22,6 +22,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _CursorTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -128,6 +132,7 @@ Material:
     - _Metallic2: 0.724
     - _Mode: 3
     - _OcclusionStrength: 1
+    - _PaintAlpha: 1
     - _Parallax: 0.02
     - _Parallax1: 0.02
     - _Parallax2: 0.02

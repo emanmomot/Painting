@@ -41,17 +41,21 @@ Shader "VertexPainter/SplatBlendPaint"
       _DistUVScale2("Distance UV Scale", Float) = 0.5
 
       _PaintTex("Paint Texture", 2D) = "black" {}
+      _PaintAlpha("Paint Alpha", float) = 1
    }
    SubShader {
-      Tags { "RenderType"="Opaque" }
+      Tags { "Queue"="Transparent" "RenderType"="Transparent" }
       LOD 200
+
+      ZWrite Off
+      Blend SrcAlpha OneMinusSrcAlpha
       
       CGPROGRAM
       
       // these are done with shader compile options - but honestly, on most modern hardware,
       // doing a branch would be fine since the branch would always go the same direction on
       // each pixel. If you are running low on keywords, that could be a viable option for you.
-      #pragma surface surf Standard vertex:vert fullforwardshadows
+      #pragma surface surf Standard vertex:vert fullforwardshadows alpha
       #pragma shader_feature __ _PARALLAXMAP
       #pragma shader_feature __ _NORMALMAP
       #pragma shader_feature __ _METALLICGLOSSMAP
@@ -63,6 +67,7 @@ Shader "VertexPainter/SplatBlendPaint"
       #pragma shader_feature __ _DISTBLEND
 
       sampler2D _PaintTex;
+      float _PaintAlpha;
 
       #include "SplatBlend_Shared.cginc"
 
@@ -147,10 +152,12 @@ Shader "VertexPainter/SplatBlendPaint"
          o.Normal = UnpackNormal(lerp(n1, n2, b1));
          #endif
          o.Albedo = c.rgb;
-         
+         o.Alpha = _PaintAlpha;
       }
       ENDCG
-   } 
+      }
+
+   
    CustomEditor "SplatMapShaderGUI"
    FallBack "Diffuse"
 }

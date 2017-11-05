@@ -7,253 +7,145 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Main 17
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _LAYERS2
+  m_Shader: {fileID: 4800000, guid: 7156838ec026e42a3a5dcd7716e0901e, type: 3}
+  m_ShaderKeywords: _ALPHABLEND_ON _LAYERS2
   m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
+  disabledShaderPasses: []
   m_SavedProperties:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TexEnvs:
-    - first:
-        name: <noninit>
-      second:
+    - <noninit>:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _BumpMap
-      second:
+    - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _DetailAlbedoMap
-      second:
+    - _CursorTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _DetailMask
-      second:
+    - _DetailAlbedoMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _DetailNormalMap
-      second:
+    - _DetailMask:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _EmissionMap
-      second:
+    - _DetailNormalMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _Emissive1
-      second:
+    - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _Emissive2
-      second:
+    - _Emissive1:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _GlossinessTex1
-      second:
+    - _Emissive2:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _GlossinessTex2
-      second:
+    - _GlossinessTex1:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _MainTex
-      second:
+    - _GlossinessTex2:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _MetallicGlossMap
-      second:
+    - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _Normal1
-      second:
+    - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _Normal2
-      second:
+    - _Normal1:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _OcclusionMap
-      second:
+    - _Normal2:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _ParallaxMap
-      second:
+    - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _SpecGlossMap
-      second:
+    - _PaintTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _Tex1
-      second:
+    - _ParallaxMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _Tex2
-      second:
+    - _SpecGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Tex1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Tex2:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - first:
-        name: <noninit>
-      second: 0
-    - first:
-        name: _BumpScale
-      second: 1
-    - first:
-        name: _Contrast2
-      second: 0.5
-    - first:
-        name: _Cutoff
-      second: 0.5
-    - first:
-        name: _DetailNormalMapScale
-      second: 1
-    - first:
-        name: _DistBlendMax
-      second: 100
-    - first:
-        name: _DistBlendMin
-      second: 0
-    - first:
-        name: _DistUVScale1
-      second: 0.5
-    - first:
-        name: _DistUVScale2
-      second: 0.5
-    - first:
-        name: _DstBlend
-      second: 0
-    - first:
-        name: _EmissiveMult1
-      second: 1
-    - first:
-        name: _EmissiveMult2
-      second: 1
-    - first:
-        name: _FlowAlpha
-      second: 1
-    - first:
-        name: _FlowIntensity
-      second: 1
-    - first:
-        name: _FlowRefraction
-      second: 0.04
-    - first:
-        name: _FlowSpeed
-      second: 0
-    - first:
-        name: _GlossMapScale
-      second: 1
-    - first:
-        name: _Glossiness
-      second: 0.5
-    - first:
-        name: _Glossiness1
-      second: 0.5
-    - first:
-        name: _Glossiness2
-      second: 0.5
-    - first:
-        name: _GlossyReflections
-      second: 1
-    - first:
-        name: _Metallic
-      second: 0
-    - first:
-        name: _Metallic1
-      second: 0
-    - first:
-        name: _Metallic2
-      second: 0
-    - first:
-        name: _Mode
-      second: 0
-    - first:
-        name: _OcclusionStrength
-      second: 1
-    - first:
-        name: _Parallax
-      second: 0.02
-    - first:
-        name: _Parallax1
-      second: 0.02
-    - first:
-        name: _Parallax2
-      second: 0.02
-    - first:
-        name: _SmoothnessTextureChannel
-      second: 0
-    - first:
-        name: _SpecularHighlights
-      second: 1
-    - first:
-        name: _SrcBlend
-      second: 1
-    - first:
-        name: _TexScale1
-      second: 1
-    - first:
-        name: _TexScale2
-      second: 1
-    - first:
-        name: _UVSec
-      second: 0
-    - first:
-        name: _ZWrite
-      second: 1
+    - <noninit>: 0
+    - _BumpScale: 1
+    - _Contrast2: 0.5
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DistBlendMax: 100
+    - _DistBlendMin: 0
+    - _DistUVScale1: 0.5
+    - _DistUVScale2: 0.5
+    - _DstBlend: 10
+    - _EmissiveMult1: 1
+    - _EmissiveMult2: 1
+    - _FlowAlpha: 1
+    - _FlowIntensity: 1
+    - _FlowRefraction: 0.04
+    - _FlowSpeed: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _Glossiness1: 0.5
+    - _Glossiness2: 0.5
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Metallic1: 0
+    - _Metallic2: 0
+    - _Mode: 2
+    - _OcclusionStrength: 1
+    - _PaintAlpha: 1
+    - _Parallax: 0.02
+    - _Parallax1: 0.02
+    - _Parallax2: 0.02
+    - _ShadowIntensity: 0.6
+    - _Shininess: 0.078125
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 5
+    - _TexScale1: 1
+    - _TexScale2: 1
+    - _UVSec: 0
+    - _ZWrite: 0
     m_Colors:
-    - first:
-        name: <noninit>
-      second: {r: 0, g: 1, b: 0, a: NaN}
-    - first:
-        name: _Color
-      second: {r: 1, g: 1, b: 1, a: 1}
-    - first:
-        name: _EmissionColor
-      second: {r: 0, g: 0, b: 0, a: 1}
-    - first:
-        name: _SpecColor
-      second: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - first:
-        name: _Tint1
-      second: {r: 1, g: 1, b: 1, a: 1}
-    - first:
-        name: _Tint2
-      second: {r: 1, g: 1, b: 1, a: 1}
+    - <noninit>: {r: 0, g: 1, b: 0, a: NaN}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _Tint1: {r: 1, g: 1, b: 1, a: 1}
+    - _Tint2: {r: 1, g: 1, b: 1, a: 1}

@@ -10,6 +10,8 @@ public class PaintableObject : MonoBehaviour {
 
 	const string c_texSavePath = "/save_data/textures/";
 	const string c_paintTexUniform = "_PaintTex";
+	const string c_cursorTexUniform = "_CursorTex";
+	const float c_timeToDissapear = 15;
 
 	public int canvasWidth = 512;
 	public int canvasHeight = 512;
@@ -19,6 +21,7 @@ public class PaintableObject : MonoBehaviour {
 
 	public RenderTexture m_canvas;
 	public RenderTexture m_baseTex;
+	public RenderTexture m_cursorTex;
 	private Transform m_brushContainer;
 
 	[HideInInspector]
@@ -28,6 +31,8 @@ public class PaintableObject : MonoBehaviour {
 	public int guid;
 
 	private bool hasInitializedCanvas;
+
+	private float dissapearTimer;
 
 	// Use this for initialization
 	void Start () {
@@ -41,6 +46,7 @@ public class PaintableObject : MonoBehaviour {
 		m_brushContainer.gameObject.SetActive (false);
 
 		m_baseTex = new RenderTexture (canvasWidth, canvasHeight, depth, RenderTextureFormat.ARGB32);
+		m_cursorTex = new RenderTexture (canvasWidth, canvasHeight, depth, RenderTextureFormat.ARGB32);
 
 		Renderer rend = GetComponent<Renderer> ();
 		mat = rend.materials [matIndex];
@@ -71,6 +77,7 @@ public class PaintableObject : MonoBehaviour {
 		}
 
 		mat.SetTexture (paintTexProp, m_canvas);
+		mat.SetTexture (c_cursorTexUniform, m_cursorTex);
 	}
 	
 	// Update is called once per frame
@@ -79,6 +86,17 @@ public class PaintableObject : MonoBehaviour {
 		if (!hasInitializedCanvas) {
 			TexturePainter.singleton.RenderCanvas (this, false);
 			hasInitializedCanvas = true;
+		}
+
+		if (dissapearTimer > 0) {
+			dissapearTimer -= Time.deltaTime;
+			if (mat.HasProperty ("_PaintAlpha")) {
+				mat.SetFloat ("_PaintAlpha", dissapearTimer / c_timeToDissapear);
+			} else {
+				Color c = mat.GetColor ("_Color");
+				c.a = dissapearTimer / c_timeToDissapear;
+				mat.SetColor ("_Color", c);
+			}
 		}
 	}
 
@@ -116,6 +134,10 @@ public class PaintableObject : MonoBehaviour {
 		texture.Apply();
 
 		return texture;
+	}
+
+	public void ResetTransparency() {
+		dissapearTimer = c_timeToDissapear;
 	}
 
 	// save tex on destroy
