@@ -3,11 +3,13 @@ using System.Collections;
 
 public class Container : MonoBehaviour
 {
-	const float c_timeToDissapear = 20;
+	const float c_timeToDissapear = 200;
+	const float c_timeToReappear = 3.0f;
 
 	private MeshRenderer[] parts;
 
 	private float dissapearTimer;
+	private float reappearTimer;
 
 	// Use this for initialization
 	void Start ()
@@ -18,25 +20,25 @@ public class Container : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (dissapearTimer > 0) {
+		if (reappearTimer > 0) {
+			reappearTimer -= Time.deltaTime;
+			if (reappearTimer < 0) {
+				reappearTimer = 0;
+			}
+			SetTransOfAll (1.0f - reappearTimer / c_timeToReappear);
+		} else if (dissapearTimer > 0) {
 			dissapearTimer -= Time.deltaTime;
 			if (dissapearTimer < 0) {
 				dissapearTimer = 0;
 			}
 
 			SetTransOfAll (dissapearTimer / c_timeToDissapear);
-			/*if (mat.HasProperty ("_PaintAlpha")) {
-				mat.SetFloat ("_PaintAlpha", dissapearTimer / c_timeToDissapear);
-			} else {
-				Color c = mat.GetColor ("_Color");
-				c.a = dissapearTimer / c_timeToDissapear;
-				mat.SetColor ("_Color", c);
-//			}*/
 		}
 	}
 
 	public void StartPaint() {
-		SetTransOfAll (1);
+		reappearTimer = c_timeToReappear * (1 - GetTransparency());
+		//SetTransOfAll (1);
 		dissapearTimer = 0;
 	}
 
@@ -57,6 +59,10 @@ public class Container : MonoBehaviour
 		//rend.material.
 		//c.a = trans;
 		//rend.material.color = c;
+	}
+
+	private float GetTransparency() {
+		return parts [0].material.GetFloat ("_PaintAlpha");
 	}
 }
 

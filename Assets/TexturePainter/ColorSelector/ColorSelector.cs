@@ -54,11 +54,17 @@ public class ColorSelector : MonoBehaviour {
 
 				SelectOuterColor (selection);
 			}
+				
 
-			Vector2 innerselection = .05f * new Vector2 (Input.GetAxis ("Horizontal"), Input.GetAxis ("Vertical"));
+			Vector2 innerselectionX = .01f * new Vector2 (Input.GetAxis ("Horizontal"), 0);
+			Vector2 innerselectionY = .01f * new Vector2 (0, Input.GetAxis ("Vertical"));
 
-			innerDelta += innerselection;
-			SelectInnerColor (innerDelta);
+			if (SelectInnerColor (innerDelta + innerselectionX)) {
+				innerDelta += innerselectionX;
+			}
+			if (SelectInnerColor (innerDelta + innerselectionY)) {
+				innerDelta += innerselectionY;
+			}
 
 		} else if(isOpen) {
 			colorSelector.SetActive (false);
@@ -89,7 +95,7 @@ public class ColorSelector : MonoBehaviour {
 
 		}
 	}
-	void SelectInnerColor(Vector2 delta){
+	bool SelectInnerColor(Vector2 delta){
 		float v=0.0f, w=0.0f, u=0.0f;
 		Barycentric (delta,ref v,ref w,ref u);
 		if (v >= 0.15f && w >= -0.15f && u >= -0.15f) {
@@ -101,10 +107,10 @@ public class ColorSelector : MonoBehaviour {
 			innerCursor.transform.localPosition =delta;
 			innerDelta = delta;
 
-		
+			return true;
 
 		}
-
+		return false;
 	}
 	Vector3 ClampPosToCircle(Vector3 pos){
 		Vector3 newPos = Vector3.zero;
