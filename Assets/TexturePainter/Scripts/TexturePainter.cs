@@ -99,13 +99,16 @@ public class TexturePainter : MonoBehaviour {
 		
 	public void StartPaint(Vector2 pos) {
 		smoothBrush = new SmoothBrush (pos, brushSize, BRUSH_STEP, lastPaintableObject);
-		lastPaintableObject.ResetTransparency ();
+
+		lastPaintableObject.container.StartPaint ();
 	}
 
 	public void EndPaint() {
 		smoothBrush.AddCP (brushPos, brushSize);
 		smoothBrush.UpdateStroke ();
 		smoothBrush = null;
+
+		lastPaintableObject.container.EndPaint ();
 
 		RenderCanvas (lastPaintableObject, false);
 		SaveTexture (lastPaintableObject);

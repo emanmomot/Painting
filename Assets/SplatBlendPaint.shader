@@ -41,6 +41,7 @@ Shader "VertexPainter/SplatBlendPaint"
       _DistUVScale2("Distance UV Scale", Float) = 0.5
 
       _PaintTex("Paint Texture", 2D) = "black" {}
+      _CursorTex ("Cursor Texture", 2d) = "black" {}
       _PaintAlpha("Paint Alpha", float) = 1
    }
    SubShader {
@@ -55,7 +56,7 @@ Shader "VertexPainter/SplatBlendPaint"
       // these are done with shader compile options - but honestly, on most modern hardware,
       // doing a branch would be fine since the branch would always go the same direction on
       // each pixel. If you are running low on keywords, that could be a viable option for you.
-      #pragma surface surf Standard vertex:vert fullforwardshadows alpha
+      #pragma surface surf Standard vertex:vert fullforwardshadows alpha:fade
       #pragma shader_feature __ _PARALLAXMAP
       #pragma shader_feature __ _NORMALMAP
       #pragma shader_feature __ _METALLICGLOSSMAP
@@ -155,6 +156,35 @@ Shader "VertexPainter/SplatBlendPaint"
          o.Alpha = _PaintAlpha;
       }
       ENDCG
+
+      CGPROGRAM
+			// Physically based Standard lighting model, and enable shadows on all light types
+			#pragma surface surf Standard alpha:fade
+			
+			// Use shader model 3.0 target, to get nicer looking lighting
+			#pragma target 3.0
+			
+			sampler2D _CursorTex;
+			
+			struct Input {
+				float2 uv_Tex1;
+			};
+			
+			// Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
+			// See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
+			// #pragma instancing_options assumeuniformscaling
+			UNITY_INSTANCING_CBUFFER_START(Props)
+				// put more per-instance properties here
+			UNITY_INSTANCING_CBUFFER_END
+			
+			void surf (Input IN, inout SurfaceOutputStandard o) {
+				// Albedo comes from a texture tinted by color
+				fixed4 c = tex2D (_CursorTex, IN.uv_Tex1);
+			
+				o.Albedo = c.rgb;
+				o.Alpha = c.a;
+			}
+			ENDCG
       }
 
    

@@ -7,8 +7,8 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Main 17
-  m_Shader: {fileID: 4800000, guid: 7156838ec026e42a3a5dcd7716e0901e, type: 3}
-  m_ShaderKeywords: _ALPHABLEND_ON _LAYERS2
+  m_Shader: {fileID: 4800000, guid: 8c80c7dd444394dc38a900c2fe778c7c, type: 3}
+  m_ShaderKeywords: _LAYERS2
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -112,7 +112,7 @@ Material:
     - _DistBlendMin: 0
     - _DistUVScale1: 0.5
     - _DistUVScale2: 0.5
-    - _DstBlend: 10
+    - _DstBlend: 0
     - _EmissiveMult1: 1
     - _EmissiveMult2: 1
     - _FlowAlpha: 1
@@ -127,7 +127,7 @@ Material:
     - _Metallic: 0
     - _Metallic1: 0
     - _Metallic2: 0
-    - _Mode: 2
+    - _Mode: 0
     - _OcclusionStrength: 1
     - _PaintAlpha: 1
     - _Parallax: 0.02
@@ -137,11 +137,11 @@ Material:
     - _Shininess: 0.078125
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SrcBlend: 5
+    - _SrcBlend: 1
     - _TexScale1: 1
     - _TexScale2: 1
     - _UVSec: 0
-    - _ZWrite: 0
+    - _ZWrite: 1
     m_Colors:
     - <noninit>: {r: 0, g: 1, b: 0, a: NaN}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
