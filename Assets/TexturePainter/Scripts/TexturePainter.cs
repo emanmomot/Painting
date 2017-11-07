@@ -100,7 +100,9 @@ public class TexturePainter : MonoBehaviour {
 	public void StartPaint(Vector2 pos) {
 		smoothBrush = new SmoothBrush (pos, brushSize, BRUSH_STEP, lastPaintableObject);
 
-		lastPaintableObject.container.StartPaint ();
+		if (lastPaintableObject.container != null) {
+			lastPaintableObject.container.StartPaint ();
+		}
 	}
 
 	public void EndPaint() {
@@ -108,7 +110,9 @@ public class TexturePainter : MonoBehaviour {
 		smoothBrush.UpdateStroke ();
 		smoothBrush = null;
 
-		lastPaintableObject.container.EndPaint ();
+		if (lastPaintableObject.container != null) {
+			lastPaintableObject.container.EndPaint ();
+		}
 
 		RenderCanvas (lastPaintableObject, false);
 		SaveTexture (lastPaintableObject);
@@ -216,7 +220,6 @@ public class TexturePainter : MonoBehaviour {
 		//Ray borderRay = sceneCamera.ScreenPointToRay (cursorPos + borderOffset);
 
 		if (Physics.Raycast (cursorRay, out hit, PAINT_RANGE, paintableLayerMask)) {
-
 			// cursor is overlapping multiple objects
 			//if (hit.collider != borderHit.collider) {
 			//	return false;

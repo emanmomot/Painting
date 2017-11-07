@@ -921,6 +921,14 @@
         <float>0.09800573</float>
       </value>
     </item>
+    <item>
+      <key>
+        <int>537029082</int>
+      </key>
+      <value>
+        <float>0.0500057824</float>
+      </value>
+    </item>
   </dict>
   <dict>
     <item>
@@ -1841,6 +1849,14 @@
       </key>
       <value>
         <float>0.1820058</float>
+      </value>
+    </item>
+    <item>
+      <key>
+        <int>537029082</int>
+      </key>
+      <value>
+        <float>0.08000576</float>
       </value>
     </item>
   </dict>

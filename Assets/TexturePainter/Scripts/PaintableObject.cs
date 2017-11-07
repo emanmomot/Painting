@@ -35,6 +35,11 @@ public class PaintableObject : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		if (!GetComponent<MeshCollider> ()) {
+			Debug.LogError ("YOU NEED A MESH COLLIDER BOI");
+		}
+
+
 		texScale = TexScaleWriter.singleton.ReadValue (GetGUID());
 
 		gameObject.layer = LayerMask.NameToLayer (TexturePainter.c_paintableLayer);

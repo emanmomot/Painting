@@ -8,13 +8,12 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: m_window 2
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _ALPHABLEND_ON _EMISSION _LAYERS2
+  m_ShaderKeywords: _EMISSION _LAYERS2
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
-  stringTagMap:
-    RenderType: Transparent
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -56,7 +55,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 0d2a2baf5b5e54eb6a436ee3f5576afe, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -108,7 +107,7 @@ Material:
     - _DistBlendMin: 0
     - _DistUVScale1: 0.5
     - _DistUVScale2: 0.5
-    - _DstBlend: 10
+    - _DstBlend: 0
     - _EmissiveMult1: 1
     - _EmissiveMult2: 1
     - _FlowAlpha: 1
@@ -123,7 +122,7 @@ Material:
     - _Metallic: 1
     - _Metallic1: 0.526
     - _Metallic2: 0.724
-    - _Mode: 2
+    - _Mode: 0
     - _OcclusionStrength: 1
     - _PaintAlpha: 1
     - _Parallax: 0.02
@@ -131,14 +130,14 @@ Material:
     - _Parallax2: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SrcBlend: 5
+    - _SrcBlend: 1
     - _TexScale1: 0.76
     - _TexScale2: 1
     - _UVSec: 0
-    - _ZWrite: 0
+    - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.8602941, g: 0.9595335, b: 1, a: 1}
-    - _EmissionColor: {r: 0.4612889, g: 0.5324454, b: 0.7941176, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0.54482746, b: 1, a: 1}
     - _SpecColor1: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 0.2}
     - _SpecColor2: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 0.2}
     - _Tint1: {r: 1, g: 1, b: 1, a: 1}
