@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2391532}
   - component: {fileID: 5481486}
   - component: {fileID: 14508808}
+  - component: {fileID: 114371660427944928}
   m_Layer: 0
   m_Name: HamBodLink
   m_TagString: Untagged
@@ -119,3 +120,16 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 185948}
   m_IsPrefabParent: 1
+--- !u!114 &114371660427944928
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 185948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07f115b0aad7549b8a36c1ca3c427bae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: 0.4
+  speed: 0.05

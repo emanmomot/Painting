@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Container : MonoBehaviour
 {
 	const float c_timeToDissapear = 200;
 	const float c_timeToReappear = 3.0f;
 
-	private MeshRenderer[] parts;
+	private List<MeshRenderer> parts;
 
 	private float dissapearTimer;
 	private float reappearTimer;
@@ -14,7 +15,11 @@ public class Container : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		parts = GetComponentsInChildren<MeshRenderer> (false);
+		parts = new List<MeshRenderer> (GetComponentsInChildren<MeshRenderer> (false));
+		MeshRenderer rend = GetComponent<MeshRenderer> ();
+		if (rend != null) {
+			parts.Add (rend);
+		}
 	}
 	
 	// Update is called once per frame

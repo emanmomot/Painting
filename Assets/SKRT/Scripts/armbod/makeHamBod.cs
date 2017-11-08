@@ -48,7 +48,7 @@ public class makeHamBod : ProcBase {
 
 		Vector3 dif = tail.transform.position - head.transform.position;
 		float length = dif.magnitude;
-		float linkSize = length / numLinks;
+		float linkSize = length / (numLinks+1);
 		Vector3 dir = dif.normalized;
 		Vector3 pos = head.transform.position;
 		GameObject prevLink = head;
@@ -56,16 +56,17 @@ public class makeHamBod : ProcBase {
 		for (int i = 0; i < numLinks; i++) {
 			pos += dir * linkSize;
 			GameObject newLink = (GameObject)GameObject.Instantiate (linkPrefab, pos, Quaternion.identity);
-			SpringJoint joint = newLink.GetComponent<SpringJoint> ();
-			joint.connectedBody = prevLink.GetComponent<Rigidbody> ();
+			//SpringJoint joint = newLink.GetComponent<SpringJoint> ();
+			//joint.connectedBody = prevLink.GetComponent<Rigidbody> ();
 			prevLink = newLink;
 
-			if (i == 0) {
-				Rigidbody body = newLink.GetComponent<Rigidbody> ();
-				body.constraints = RigidbodyConstraints.FreezeAll;
-				newLink.transform.SetParent (head.transform);
-				//handModel.transform.SetParent (newLink.transform);
-			}
+			//newLink.transform.SetParent (head.transform);
+
+			Rigidbody body = newLink.GetComponent<Rigidbody> ();
+			body.constraints = RigidbodyConstraints.FreezeAll;
+
+			newLink.GetComponent<LinkScript> ().InitLink (i, numLinks);
+	
 
 			links.Add (newLink.transform);
 		}
