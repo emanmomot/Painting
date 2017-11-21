@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LinkScript : MonoBehaviour {
 
+	public CharacterController player;
+
 	public float amplitude;
 	public float speed;
 
@@ -11,9 +13,19 @@ public class LinkScript : MonoBehaviour {
 	private int numLinks;
 	private Vector3 offset;
 
+	private float amt;
+
 	public void InitLink(int ind, int numLinks) {
 		this.ind = ind;
 		this.numLinks = numLinks;
+		
+		// no even numlinks
+		if (numLinks % 2 == 0) {
+			numLinks++;
+		}
+
+		float center = numLinks / 2.0f;
+		//amt = 
 	}
 
 	// Use this for initialization
@@ -23,6 +35,7 @@ public class LinkScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		
 		//float t = (ind / (float)numLinks + speed * Time.time) * 2 * Mathf.PI;
 		//transform.localPosition = offset + new Vector3 (0, amplitude * Mathf.Sin (t), 0);
 	}

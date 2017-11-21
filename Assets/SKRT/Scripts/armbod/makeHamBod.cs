@@ -60,10 +60,10 @@ public class makeHamBod : ProcBase {
 			//joint.connectedBody = prevLink.GetComponent<Rigidbody> ();
 			prevLink = newLink;
 
-			//newLink.transform.SetParent (head.transform);
+			newLink.transform.SetParent (head.transform);
 
-			Rigidbody body = newLink.GetComponent<Rigidbody> ();
-			body.constraints = RigidbodyConstraints.FreezeAll;
+			//Rigidbody body = newLink.GetComponent<Rigidbody> ();
+			//body.constraints = RigidbodyConstraints.FreezeAll;
 
 			newLink.GetComponent<LinkScript> ().InitLink (i, numLinks);
 	
