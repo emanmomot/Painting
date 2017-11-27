@@ -13,6 +13,8 @@ public enum Painter_BrushMode { PAINT, DECAL };
 
 public class TexturePainter : MonoBehaviour {
 
+	private const float timeToDrip = .01f;
+
 	public const string c_paintableLayer = "Paintable";
 
 	public static TexturePainter singleton;
@@ -20,6 +22,7 @@ public class TexturePainter : MonoBehaviour {
 
 	public Transform brushContainerParent;
 	public GameObject brushContainerPrefab;
+	public GameObject dripPrefab;
 
 	public GameObject brushCursor;//, brushContainer; //The cursor that overlaps the model and our container for the brushes painted
 	public GameObject brushCursorScalable;
@@ -30,6 +33,10 @@ public class TexturePainter : MonoBehaviour {
 	public Material baseMaterial; // The material of our base texture (Were we will save the painted texture)
 
 	PaintableObject lastPaintableObject;
+
+	Vector2 lastCoords;
+	float dripTimer;
+	DripScript drip;
 
 	float brushSize = 1.0f; //The size of our brush
 	Color brushColor; //The selected color
@@ -73,6 +80,29 @@ public class TexturePainter : MonoBehaviour {
 			}
 			smoothBrush.UpdateStroke ();
 
+			if (drip == null) {
+				if (dripTimer > 0) {
+					if (DripScript.IsInRange (lastCoords, brushPos, lastPaintableObject.texScale)) {
+						dripTimer += Time.deltaTime;
+						if (dripTimer > timeToDrip) {
+							drip = MakeDrip (lastPaintableObject, brushPos, brushSize).GetComponent<DripScript> ();
+							drip.Init (brushPos, lastPaintableObject);
+							dripTimer = 0;
+						}
+					} else {
+						dripTimer = 0;
+					}
+				} else {
+					lastCoords = brushPos;
+					dripTimer += Time.deltaTime;
+				}
+			} else {
+				if (drip.IsInRange (brushPos)) {
+					drip.IncAmt ();
+				} else {
+					drip = null;
+				}
+			}
 		}
 
 		if (lastPaintableObject != null) {
@@ -144,10 +174,10 @@ public class TexturePainter : MonoBehaviour {
 		brushObj = dotPool.GetDot (); //Paint a brush
 		SpriteRenderer rend = brushObj.GetComponent<SpriteRenderer>();
 		rend.color = brushColor; //Set the brush color
-		rend.sortingOrder = paintableObject.GetBrushContainer().childCount;
+		rend.sortingOrder = paintableObject.GetBrushContainer().GetChild(0).childCount;
 	
 		//brushColor.a = brushSize * 2.0f; // Brushes have alpha to have a merging effect when painted over.
-		brushObj.transform.SetParent(paintableObject.GetBrushContainer(),false);
+		brushObj.transform.SetParent(paintableObject.GetBrushContainer().GetChild(0),false);
 		//brushObj.transform.parent = paintableObject.GetBrushContainer(); //Add the brush to our container to be wiped later
 		brushObj.transform.localPosition = new Vector3(pos.x, pos.y, 0); //The position of the brush (in the UVMap)
 
@@ -157,6 +187,27 @@ public class TexturePainter : MonoBehaviour {
 		brushObj.transform.localScale *= size;
 
 		return brushObj;
+	}
+
+	public GameObject MakeDrip(PaintableObject paintableObject, Vector2 pos, float size) {
+		GameObject newDrip;
+
+		newDrip = GameObject.Instantiate (dripPrefab) as GameObject;
+		SpriteRenderer rend = newDrip.GetComponentInChildren<SpriteRenderer>();
+		rend.color = brushColor; //Set the brush color
+		rend.sortingOrder = paintableObject.GetBrushContainer().GetChild(0).childCount;
+
+		//brushColor.a = brushSize * 2.0f; // Brushes have alpha to have a merging effect when painted over.
+		newDrip.transform.SetParent(paintableObject.GetBrushContainer().GetChild(1),false);
+		//brushObj.transform.parent = paintableObject.GetBrushContainer(); //Add the brush to our container to be wiped later
+		newDrip.transform.localPosition = new Vector3(pos.x, pos.y, 0); //The position of the brush (in the UVMap)
+
+		newDrip.transform.localScale = new Vector3 (newDrip.transform.localScale.x * paintableObject.texScale.x, 
+			newDrip.transform.localScale.y * paintableObject.texScale.y, 
+			newDrip.transform.localScale.z);
+		newDrip.transform.localScale *= size;
+
+		return newDrip;
 	}
 
 	//To update at realtime the painting cursor on the mesh
@@ -288,9 +339,14 @@ public class TexturePainter : MonoBehaviour {
 		baseMaterial.mainTexture = paintableObject.GetBaseTex ();
 
 		Transform brushContainer = paintableObject.GetBrushContainer ();
+		Transform brushes = brushContainer.GetChild (0);
+		Transform drips = brushContainer.GetChild (1);
 
-		while (brushContainer.childCount > 0) {
-			dotPool.FreeDot (brushContainer.GetChild (0).gameObject);
+		while (brushes.childCount > 0) {
+			dotPool.FreeDot (brushes.GetChild (0).gameObject);
+		}
+		for(int i = 0; i < drips.childCount-1; i++) {
+			GameObject.Destroy (drips.GetChild (i).gameObject);
 		}
 
 		ShowCursor ();
