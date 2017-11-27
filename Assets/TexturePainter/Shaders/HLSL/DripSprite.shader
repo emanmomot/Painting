@@ -70,7 +70,7 @@ Shader "Drip Sprite"
 
         float2 uv = IN.uv_MainTex;
 
-        float o = 0.3;
+        float o = 0.4;
 
         float s = 5.0;
 
