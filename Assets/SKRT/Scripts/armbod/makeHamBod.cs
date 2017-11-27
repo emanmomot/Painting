@@ -56,11 +56,17 @@ public class makeHamBod : ProcBase {
 		for (int i = 0; i < numLinks; i++) {
 			pos += dir * linkSize;
 			GameObject newLink = (GameObject)GameObject.Instantiate (linkPrefab, pos, Quaternion.identity);
-			//SpringJoint joint = newLink.GetComponent<SpringJoint> ();
-			//joint.connectedBody = prevLink.GetComponent<Rigidbody> ();
-			prevLink = newLink;
+			Rigidbody springLink = ((GameObject)GameObject.Instantiate (linkPrefab, pos, Quaternion.identity)).GetComponent<Rigidbody> ();
+			springLink.gameObject.name = "SpringLink" + i;
 
-			newLink.transform.SetParent (head.transform);
+			springLink.constraints = RigidbodyConstraints.FreezeAll;
+			springLink.transform.SetParent (head.transform);
+			//newLink.transform.SetParent (head.transform);
+
+			Joint joint = newLink.GetComponent<Joint> ();
+			joint.connectedBody = springLink;
+
+			prevLink = newLink;
 
 			//Rigidbody body = newLink.GetComponent<Rigidbody> ();
 			//body.constraints = RigidbodyConstraints.FreezeAll;
